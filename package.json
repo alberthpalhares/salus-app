@@ -7,7 +7,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/alberthpalhares/salus.git"
+    "url": "git+https://github.com/alberthpalhares/salus-app.git"
   },
   "scripts": {
     "dev": "vite",
