@@ -1,0 +1,47 @@
+# Dependencies
+node_modules/
+bun.lock
+
+# Build output
+dist/
+.vercel/
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Graphify output
+graphify-out/
+.graphify_*
+
+# Firebase
+.firebase/
+
+# OS files
+.DS_Store
+Thumbs.db
+*.tmp
+*.log
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Python (caso usado pelo Graphify)
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Test coverage
+coverage/
+
+# Dados pessoais do framework (não do app)
+_Caixa de Entrada/*
+!_Caixa de Entrada/.gitkeep
+!_Caixa de Entrada/LEIA-ME.md
+Perfis/*
+!Perfis/.gitkeep

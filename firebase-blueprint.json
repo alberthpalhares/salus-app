@@ -1,0 +1,97 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "Perfil do usuário autenticado no Salus",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "email": { "type": "string" },
+        "displayName": { "type": "string" },
+        "photoURL": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["uid", "email"]
+    },
+    "UserConfig": {
+      "title": "UserConfig",
+      "description": "Configurações BYOK e integrações do usuário",
+      "type": "object",
+      "properties": {
+        "chave_gemini": { "type": "string" },
+        "chave_deepseek": { "type": "string" },
+        "provider_ia": { "type": "string", "enum": ["gemini", "deepseek"] },
+        "googleDriveConnected": { "type": "boolean" },
+        "googleCalendarConnected": { "type": "boolean" },
+        "updatedAt": { "type": "string" }
+      }
+    },
+    "Family": {
+      "title": "Family",
+      "description": "Dados da família do usuário",
+      "type": "object",
+      "properties": {
+        "nomeFamilia": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["nomeFamilia"]
+    },
+    "Member": {
+      "title": "Member",
+      "description": "Membro da família (humano ou pet)",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "dirName": { "type": "string" },
+        "especie": { "type": "string" },
+        "raca": { "type": "string" },
+        "papel": { "type": "string" },
+        "vinculo": { "type": "string" },
+        "dataNascimento": { "type": "string" },
+        "tipoSanguineo": { "type": "string" },
+        "alergias": { "type": "array" },
+        "condicoes": { "type": "array" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["name", "especie"]
+    },
+    "MedicalRecord": {
+      "title": "MedicalRecord",
+      "description": "Registro médico ou documento clínico arquivado",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "memberName": { "type": "string" },
+        "docType": { "type": "string" },
+        "date": { "type": "string" },
+        "summary": { "type": "string" },
+        "filename": { "type": "string" },
+        "url": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["memberName", "docType"]
+    }
+  },
+  "firestore": {
+    "/usuarios/{userId}/perfil/info": {
+      "schema": { "$ref": "#/entities/UserProfile" },
+      "description": "Informações do perfil"
+    },
+    "/usuarios/{userId}/perfil/config": {
+      "schema": { "$ref": "#/entities/UserConfig" },
+      "description": "Configurações BYOK e chaves"
+    },
+    "/usuarios/{userId}/familia/dados": {
+      "schema": { "$ref": "#/entities/Family" },
+      "description": "Dados da família"
+    },
+    "/usuarios/{userId}/membros/{memberId}": {
+      "schema": { "$ref": "#/entities/Member" },
+      "description": "Membros da família do usuário"
+    },
+    "/usuarios/{userId}/registros/{recordId}": {
+      "schema": { "$ref": "#/entities/MedicalRecord" },
+      "description": "Exames e laudos arquivados pelo usuário"
+    }
+  }
+}

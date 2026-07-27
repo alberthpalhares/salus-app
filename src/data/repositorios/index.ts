@@ -1,0 +1,12 @@
+export * as repositoriomembros from './membros';
+export * as repositoriomedicamentos from './medicamentos';
+export * as repositoriovacinas from './vacinas';
+export * as repositoriocheckups from './checkups';
+export * as repositorioexames from './exames';
+export * as repositorioeventos from './eventos';
+export * as repositorioanalises from './analises';
+export * as repositoriocaixaEntrada from './caixaEntrada';
+export * as repositeriodocumentos from './documentos';
+export * as repositorioperfilConfig from './perfilConfig';
+export * as repositoriofamilia from './familia';
+export * as repositorioconversas from './conversas';

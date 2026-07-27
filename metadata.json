@@ -1,0 +1,11 @@
+{
+  "name": "Salus",
+  "description": "Central de Inteligência de Saúde da Família — pessoas e animais.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
