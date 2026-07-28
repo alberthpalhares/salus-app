@@ -16,11 +16,22 @@ if (!getApps().length) {
 
   if (serviceAccountJson) {
     // Produção (Vercel): usa Service Account explícita
-    const serviceAccount = JSON.parse(serviceAccountJson);
-    adminApp = initializeApp({
-      credential: cert(serviceAccount),
-      projectId: firebaseConfig.projectId,
-    });
+    try {
+      const serviceAccount = JSON.parse(serviceAccountJson);
+      // Corrigir \n literal → newline real na private_key
+      // (Vercel UI pode escapar as quebras de linha do PEM)
+      if (serviceAccount.private_key && typeof serviceAccount.private_key === 'string') {
+        serviceAccount.private_key = serviceAccount.private_key.replace(/\\n/g, '\n');
+      }
+      adminApp = initializeApp({
+        credential: cert(serviceAccount),
+        projectId: firebaseConfig.projectId,
+      });
+    } catch (err) {
+      console.error('[firebase-admin] Erro ao inicializar com Service Account:', err);
+      // Fallback: inicializa sem credenciais (limitado)
+      adminApp = initializeApp({ projectId: firebaseConfig.projectId });
+    }
   } else {
     // Desenvolvimento local: usa ADC
     adminApp = initializeApp({
