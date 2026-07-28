@@ -18,6 +18,10 @@ graphify-out/
 # Firebase
 .firebase/
 
+# Google OAuth secrets
+client_secret*.json
+Documentos do projeto/
+
 # OS files
 .DS_Store
 Thumbs.db
