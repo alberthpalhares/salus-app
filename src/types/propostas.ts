@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { Membro, MedicamentoPrescrito, VacinaRegistro, MarcadorChave } from './dominio';
+import { Membro, MedicamentoPrescrito, VacinaRegistro, MarcadorChave } from './dominio.js';
 
 // --- SCHEMA ZOD E TIPOS PARA EXTRAÇÃO DE DOCUMENTOS (P8) ---
 

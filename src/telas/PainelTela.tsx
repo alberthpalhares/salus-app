@@ -4,7 +4,7 @@ import { useAuth } from '../auth/AuthProvider';
 import { Botao } from '../componentes/ui/Botao';
 import { EstadoVazio } from '../componentes/ui/EstadoVazio';
 import { Carregando } from '../componentes/ui/Carregando';
-import { Plus, Inbox, HardDriveUpload, Activity } from 'lucide-react';
+import { Plus, Inbox, HardDriveUpload, Activity, Stethoscope } from 'lucide-react';
 import { Membro, Medicamento, Vacina, Checkup } from '../types/dominio';
 import {
   repositoriomembros,
@@ -22,6 +22,9 @@ import { CardAlertasPainel } from './Painel/CardAlertasPainel';
 import { CardMedicamentosPainel } from './Painel/CardMedicamentosPainel';
 import { GridIntegrantesPainel } from './Painel/GridIntegrantesPainel';
 import { ModalNovoMembro } from './Painel/ModalNovoMembro';
+import { ModalEditarMembro } from './Painel/ModalEditarMembro';
+import { DashboardKpiBanner } from './Painel/DashboardKpiBanner';
+import { GraficoResumoSaude } from './Painel/GraficoResumoSaude';
 
 export const PainelTela: React.FC = () => {
   const navigate = useNavigate();
@@ -35,6 +38,7 @@ export const PainelTela: React.FC = () => {
   const [ultimoExport, setUltimoExport] = useState<string | undefined>(undefined);
   
   const [modalMembroAberto, setModalMembroAberto] = useState<boolean>(false);
+  const [membroEditando, setMembroEditando] = useState<Membro | null>(null);
 
   const dataHojeISO = obterDataHojeISO();
 
@@ -42,6 +46,18 @@ export const PainelTela: React.FC = () => {
     if (!user) return;
     await repositoriomembros.salvar(user.uid, novoMembro);
     setMembros((prev) => [...prev, novoMembro]);
+  };
+
+  const handleEditarMembro = async (membroAtualizado: Membro) => {
+    if (!user) return;
+    await repositoriomembros.salvar(user.uid, membroAtualizado);
+    setMembros((prev) => prev.map((m) => (m.id === membroAtualizado.id ? membroAtualizado : m)));
+  };
+
+  const handleExcluirMembro = async (membroId: string) => {
+    if (!user) return;
+    await repositoriomembros.remover(user.uid, membroId);
+    setMembros((prev) => prev.filter((m) => m.id !== membroId));
   };
 
   useEffect(() => {
@@ -119,21 +135,6 @@ export const PainelTela: React.FC = () => {
         }
       });
     }
-    if (m.medicamentos_prescritos) {
-      m.medicamentos_prescritos.forEach((med, idx) => {
-        if (!todosMedicamentos.some((x) => x.membro_id === m.id && x.nome === med.nome)) {
-          todosMedicamentos.push({
-            id: `emb-presc-${m.id}-${idx}`,
-            membro_id: m.id,
-            nome: med.nome,
-            dose: med.dose || med.posologia || '',
-            frequencia: med.frequencia || '',
-            status: 'prescrito',
-            prescrito_por: med.prescritor,
-          });
-        }
-      });
-    }
   });
 
   const medicamentosEmUso = todosMedicamentos.filter((m) => m.status === 'em_uso');
@@ -144,50 +145,39 @@ export const PainelTela: React.FC = () => {
     return conds.length > 0;
   });
 
+  const totalCondicoesCount = membros.reduce((acc, m) => {
+    const conds = m.condicoes_ativas || m.condicoes || [];
+    return acc + conds.length;
+  }, 0);
+
   let precisaBackup = false;
   if (!ultimoExport) {
     precisaBackup = true;
-  } else {
-    const partesExport = ultimoExport.split('-');
-    const partesHoje = dataHojeISO.split('-');
-    if (partesExport.length === 3 && partesHoje.length === 3) {
-      const expDate = new Date(
-        parseInt(partesExport[0], 10),
-        parseInt(partesExport[1], 10) - 1,
-        parseInt(partesExport[2], 10)
-      );
-      const hojeDate = new Date(
-        parseInt(partesHoje[0], 10),
-        parseInt(partesHoje[1], 10) - 1,
-        parseInt(partesHoje[2], 10)
-      );
-      const diffDias = Math.round((hojeDate.getTime() - expDate.getTime()) / (1000 * 60 * 60 * 24));
-      if (diffDias > 30) {
-        precisaBackup = true;
-      }
-    }
   }
 
-  const estaTotalmenteVazio =
-    membros.length === 0 ||
-    (alertas.length === 0 &&
-      medicamentosEmUso.length === 0 &&
-      medicamentosPrescritos.length === 0 &&
-      membrosComCondicoes.length === 0);
+  const estaTotalmenteVazio = membros.length === 0;
 
   return (
     <div className="space-y-6 pb-12">
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pb-2 border-b border-slate-200/80">
         <div>
           <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
-            Painel de Saúde
+            Painel de Saúde da Família
           </h1>
           <p className="text-sm text-slate-600 mt-0.5">
-            {formatarDataExtenso(dataHojeISO)} — Raio-x visual da família
+            {formatarDataExtenso(dataHojeISO)} — Visão unificada da casa (Pessoas &amp; Pets)
           </p>
         </div>
 
         <div className="flex items-center gap-2">
+          <Botao
+            variante="secundario"
+            tamanho="sm"
+            icone={<Stethoscope className="w-4 h-4 text-teal-600" />}
+            onClick={() => navigate('/profissionais')}
+          >
+            Médicos &amp; Vets
+          </Botao>
           <Botao
             variante="secundario"
             tamanho="sm"
@@ -207,6 +197,16 @@ export const PainelTela: React.FC = () => {
         </div>
       </div>
 
+      {/* KPI Banner Superior */}
+      {!estaTotalmenteVazio && (
+        <DashboardKpiBanner
+          membros={membros}
+          medicamentosEmUso={medicamentosEmUso}
+          alertasCount={alertas.length}
+          condicoesCount={totalCondicoesCount}
+        />
+      )}
+
       {precisaBackup && (
         <div className="p-3.5 bg-amber-50/90 border border-amber-200/90 rounded-xl flex items-center justify-between gap-3 text-xs sm:text-sm text-amber-900 shadow-2xs">
           <div className="flex items-center gap-2.5">
@@ -218,7 +218,7 @@ export const PainelTela: React.FC = () => {
           <button
             type="button"
             onClick={() => navigate('/ajustes')}
-            className="text-xs font-bold text-amber-800 hover:text-amber-950 underline decoration-amber-400 underline-offset-4 shrink-0 cursor-pointer"
+            className="text-xs font-bold text-amber-800 hover:text-amber-950 underline shrink-0 cursor-pointer"
           >
             Ir para Ajustes
           </button>
@@ -227,45 +227,49 @@ export const PainelTela: React.FC = () => {
 
       {estaTotalmenteVazio ? (
         <EstadoVazio
-          titulo="Nenhum dado clínico cadastrado"
-          descricao="Sua família ainda não possui histórico registrado. Adicione o primeiro documento na Caixa de Entrada ou cadastre os integrantes da casa."
+          titulo="Nenhum integrante cadastrado"
+          descricao="Sua família ainda não possui integrantes registrados. Adicione pessoas ou pets para começar a gerenciar sua saúde."
           icone={<Activity className="w-6 h-6" />}
           acao={
             <div className="flex flex-col sm:flex-row gap-3">
               <Botao
                 variante="primario"
-                icone={<Inbox className="w-4 h-4" />}
-                onClick={() => navigate('/caixa-de-entrada')}
-              >
-                Ir para Caixa de Entrada
-              </Botao>
-              <Botao
-                variante="secundario"
                 icone={<Plus className="w-4 h-4" />}
                 onClick={() => setModalMembroAberto(true)}
               >
-                Cadastrar Membros
+                Cadastrar Primeiro Integrante
               </Botao>
             </div>
           }
         />
       ) : (
         <>
-          <CardAlertasPainel
-            gruposAlertas={gruposAlertas}
-            temAlerta30Dias={temAlerta30Dias}
-          />
-
-          <CardMedicamentosPainel
-            medicamentosEmUso={medicamentosEmUso}
-            medicamentosPrescritos={medicamentosPrescritos}
-            membros={membros}
-          />
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <div className="lg:col-span-2 space-y-6">
+              <CardAlertasPainel
+                gruposAlertas={gruposAlertas}
+                temAlerta30Dias={temAlerta30Dias}
+              />
+              <CardMedicamentosPainel
+                medicamentosEmUso={medicamentosEmUso}
+                medicamentosPrescritos={medicamentosPrescritos}
+                membros={membros}
+              />
+            </div>
+            <div>
+              <GraficoResumoSaude
+                membros={membros}
+                medicamentosEmUso={medicamentosEmUso}
+                alertasCount={alertas.length}
+              />
+            </div>
+          </div>
 
           <GridIntegrantesPainel
             membros={membros}
             membrosComCondicoes={membrosComCondicoes}
             onAdicionarMembro={() => setModalMembroAberto(true)}
+            onEditarMembro={(membro) => setMembroEditando(membro)}
           />
         </>
       )}
@@ -275,6 +279,14 @@ export const PainelTela: React.FC = () => {
         onFechar={() => setModalMembroAberto(false)}
         onSalvarMembro={handleSalvarMembro}
       />
+
+      <ModalEditarMembro
+        membro={membroEditando}
+        onFechar={() => setMembroEditando(null)}
+        onSalvar={handleEditarMembro}
+        onExcluir={handleExcluirMembro}
+      />
     </div>
   );
 };
+

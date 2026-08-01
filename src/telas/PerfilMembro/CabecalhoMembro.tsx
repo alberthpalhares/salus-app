@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Membro } from '../../types/dominio';
 import { Card } from '../../componentes/ui/Card';
 import { Badge } from '../../componentes/ui/Badge';
 import { Botao } from '../../componentes/ui/Botao';
+import { AvatarMembro } from '../../componentes/ui/AvatarMembro';
+import { ModalCompartilharFicha } from '../../componentes/saude/ModalCompartilharFicha';
 import { calcularIdade } from '../../lib/datas';
-import { ArrowLeft, User, Dog, Cat, Heart, AlertTriangle } from 'lucide-react';
+import { ArrowLeft, Share2, AlertTriangle } from 'lucide-react';
 
 interface CabecalhoMembroProps {
   membro: Membro;
@@ -12,28 +14,14 @@ interface CabecalhoMembroProps {
 }
 
 export const CabecalhoMembro: React.FC<CabecalhoMembroProps> = ({ membro, onVoltar }) => {
+  const [modalCompartilharAberto, setModalCompartilharAberto] = useState(false);
   const idadeTexto = calcularIdade(membro.nascimento || membro.data_nascimento);
-
-  // Ícone por tipo do membro
-  const renderIconeTipo = () => {
-    const tipo = (membro.tipo || membro.especie || 'pessoa').toString().toLowerCase();
-    if (tipo.includes('cão') || tipo.includes('cao') || tipo === 'dog') {
-      return <Dog className="w-8 h-8 text-amber-700" />;
-    }
-    if (tipo.includes('gato') || tipo === 'cat') {
-      return <Cat className="w-8 h-8 text-indigo-700" />;
-    }
-    if (tipo === 'outro') {
-      return <Heart className="w-8 h-8 text-teal-700" />;
-    }
-    return <User className="w-8 h-8 text-teal-700" />;
-  };
 
   const formatarTipoLabel = () => {
     const tipo = (membro.tipo || membro.especie || 'pessoa').toString().toLowerCase();
     if (tipo.includes('cão') || tipo.includes('cao')) return 'Cão';
     if (tipo.includes('gato')) return 'Gato';
-    if (tipo === 'outro') return 'Anatomia / Pet';
+    if (tipo === 'outro') return 'Pet';
     return 'Pessoa';
   };
 
@@ -45,7 +33,7 @@ export const CabecalhoMembro: React.FC<CabecalhoMembroProps> = ({ membro, onVolt
   return (
     <div className="space-y-4">
       {/* Botão de Voltar */}
-      <div>
+      <div className="flex items-center justify-between">
         <Botao
           variante="ghost"
           tamanho="sm"
@@ -54,14 +42,21 @@ export const CabecalhoMembro: React.FC<CabecalhoMembroProps> = ({ membro, onVolt
         >
           Voltar para lista
         </Botao>
+
+        <Botao
+          variante="primario"
+          tamanho="sm"
+          icone={<Share2 className="w-4 h-4" />}
+          onClick={() => setModalCompartilharAberto(true)}
+        >
+          Compartilhar Ficha
+        </Botao>
       </div>
 
-      {/* Cartão Principal do Cabeçalho */}
-      <Card className="flex flex-col md:flex-row md:items-center justify-between gap-6 bg-linear-to-r from-white via-teal-50/20 to-white">
+      {/* Cartão Principal do Cabeçalho com Avatar Lúdico */}
+      <Card className="flex flex-col md:flex-row md:items-center justify-between gap-6 bg-gradient-to-r from-white via-teal-50/30 to-white">
         <div className="flex items-start sm:items-center gap-4">
-          <div className="w-16 h-16 rounded-2xl bg-teal-100/80 border border-teal-200 flex items-center justify-center shrink-0 shadow-xs">
-            {renderIconeTipo()}
-          </div>
+          <AvatarMembro membro={membro} tamanho="xl" />
 
           <div className="space-y-1">
             <div className="flex flex-wrap items-center gap-2">
@@ -71,6 +66,11 @@ export const CabecalhoMembro: React.FC<CabecalhoMembroProps> = ({ membro, onVolt
               <Badge variante="teal" tamanho="sm">
                 {formatarTipoLabel()}
               </Badge>
+              {membro.tipo_sanguineo && (
+                <Badge variante="rose" tamanho="sm">
+                  {membro.tipo_sanguineo}
+                </Badge>
+              )}
               {eAnimal() && membro.raca && (
                 <Badge variante="neutro" tamanho="sm">
                   {membro.raca}
@@ -107,6 +107,11 @@ export const CabecalhoMembro: React.FC<CabecalhoMembroProps> = ({ membro, onVolt
           </div>
         </div>
       </Card>
+
+      {modalCompartilharAberto && (
+        <ModalCompartilharFicha membro={membro} onFechar={() => setModalCompartilharAberto(false)} />
+      )}
     </div>
   );
 };
+

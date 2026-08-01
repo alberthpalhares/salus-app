@@ -11,6 +11,8 @@ import { AjustesTela } from './telas/AjustesTela';
 import { OnboardingTela } from './telas/OnboardingTela';
 import { PrivacidadeTela } from './telas/PrivacidadeTela';
 import { SobreTela } from './telas/SobreTela';
+import { ProfissionaisTela } from './telas/ProfissionaisTela';
+import { FichaPublicaTela } from './telas/FichaPublicaTela';
 import { Carregando } from './componentes/ui/Carregando';
 
 function GuardaOnboarding({ children }: { children: React.ReactNode }) {
@@ -23,7 +25,8 @@ function GuardaOnboarding({ children }: { children: React.ReactNode }) {
     !onboardingConcluido &&
     location.pathname !== '/onboarding' &&
     location.pathname !== '/privacidade' &&
-    location.pathname !== '/sobre'
+    location.pathname !== '/sobre' &&
+    !location.pathname.startsWith('/ficha-publica')
   ) {
     return <Navigate to="/onboarding" replace />;
   }
@@ -49,6 +52,8 @@ function RoteamentoAutenticado() {
           <Route path="/" element={<PainelTela />} />
           <Route path="/caixa-de-entrada" element={<CaixaDeEntradaTela />} />
           <Route path="/membro/:id" element={<PerfilMembroTela />} />
+          <Route path="/profissionais" element={<ProfissionaisTela />} />
+          <Route path="/ficha-publica/:id" element={<FichaPublicaTela />} />
           <Route path="/chat" element={<ChatTela />} />
           <Route path="/ajustes" element={<AjustesTela />} />
           <Route path="/onboarding" element={<OnboardingTela />} />

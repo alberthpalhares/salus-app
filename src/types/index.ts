@@ -1,2 +1,2 @@
-export * from './dominio';
-export * from './propostas';
+export * from './dominio.js';
+export * from './propostas.js';

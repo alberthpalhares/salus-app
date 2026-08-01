@@ -176,13 +176,31 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const updateUserConfig = async (newConfig: Partial<PerfilConfig>) => {
     if (!user) return;
 
-    // Nunca enviar a chave mascarada de volta ao Firestore
-    const configParaSalvar = { ...newConfig };
-    if (configParaSalvar.provedor_ia?.chave === '••••••••') {
-      delete configParaSalvar.provedor_ia;
+    // Se o usuário passou um novo provedor_ia com chave real, salva em localStorage como fallback
+    if (newConfig.provedor_ia && newConfig.provedor_ia.chave && newConfig.provedor_ia.chave !== '••••••••') {
+      try {
+        localStorage.setItem('salus_byok_config', JSON.stringify(newConfig.provedor_ia));
+      } catch (e) {
+        console.warn('Não foi possível salvar BYOK no localStorage:', e);
+      }
     }
 
-    const merged = { ...userConfig, ...newConfig };
+    const configParaSalvar = { ...newConfig };
+    // Se a chave for a string mascarada, remove apenas a propriedade chave para não sobrescrever a chave real no Firestore
+    if (configParaSalvar.provedor_ia) {
+      if (configParaSalvar.provedor_ia.chave === '••••••••') {
+        const { chave, ...restoProvedor } = configParaSalvar.provedor_ia;
+        configParaSalvar.provedor_ia = restoProvedor as ProvedorIA;
+      }
+    }
+
+    const merged = {
+      ...userConfig,
+      ...newConfig,
+      provedor_ia: newConfig.provedor_ia
+        ? { ...(userConfig.provedor_ia || {}), ...newConfig.provedor_ia }
+        : userConfig.provedor_ia,
+    };
     setUserConfig(merged);
 
     try {
@@ -192,6 +210,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       console.error('Erro ao salvar configurações no Firestore:', err);
     }
   };
+
 
   return (
     <AuthContext.Provider

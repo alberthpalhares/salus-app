@@ -143,12 +143,27 @@ export function useSecaoBYOK() {
   }, [provedorAtual]);
 
   useEffect(() => {
-    setChave('');
+    try {
+      const cachedRaw = localStorage.getItem('salus_byok_config');
+      if (cachedRaw) {
+        const cached = JSON.parse(cachedRaw);
+        if (cached.tipo === provedorSelecionado && cached.chave) {
+          setChave(cached.chave);
+        } else {
+          setChave('');
+        }
+      } else {
+        setChave('');
+      }
+    } catch {
+      setChave('');
+    }
     setModelo(info.modeloPadrao);
     setUrlBase(info.urlBase || '');
     setResultadoTeste(null);
     setGuiaAberto(false);
   }, [provedorSelecionado]);
+
 
   const handleSalvar = async (e: React.FormEvent) => {
     e.preventDefault();

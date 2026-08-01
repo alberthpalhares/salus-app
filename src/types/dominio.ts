@@ -64,6 +64,7 @@ export interface Membro {
   id: string;
   nome: string;
   tipo?: TipoMembro;
+  avatar_id?: string;
   nascimento?: string; // AAAA-MM-DD
   vinculo: VinculoMembro;
   raca?: string;
@@ -84,6 +85,56 @@ export interface Membro {
   vacinas?: VacinaRegistro[];
   marcadores_chave?: MarcadorChave[];
 }
+
+export interface CondicaoSaudeEstruturada {
+  id: string;
+  membro_id: string;
+  nome: string;
+  categoria: 'cronica' | 'aguda' | 'alergia' | 'cirurgica' | 'preventiva';
+  gravidade: 'baixa' | 'moderada' | 'alta';
+  status: 'ativa' | 'em_remissao' | 'resolvida';
+  diagnostico_em?: string; // AAAA-MM-DD
+  medico_responsavel?: string;
+  notas?: string;
+}
+
+export interface ProfissionalSaude {
+  id: string;
+  nome: string;
+  tipo: 'medico' | 'veterinario' | 'clinica' | 'hospital' | 'laboratorio';
+  especialidade: string;
+  crm_crmv_cnpj?: string;
+  telefone?: string;
+  whatsapp?: string;
+  email?: string;
+  endereco?: string;
+  membros_vinculados: string[]; // IDs dos membros que frequentam
+  observacoes?: string;
+}
+
+export interface RegistroPrecoMedicamento {
+  id: string;
+  medicamento_nome: string;
+  membro_id?: string;
+  data_compra: string; // AAAA-MM-DD
+  preco: number;
+  quantidade_embalagem: string; // ex: "30 comp"
+  farmacia_estabelecimento: string;
+  observacoes?: string;
+}
+
+export interface ConfiguracaoFichaPublica {
+  membro_id: string;
+  incluir_identificacao: boolean;
+  incluir_emergencia: boolean;
+  incluir_condicoes: boolean;
+  incluir_medicamentos: boolean;
+  incluir_vacinas: boolean;
+  incluir_alergias: boolean;
+  incluir_exames: boolean;
+  expira_em_dias?: number;
+}
+
 
 export interface Medicamento {
   id: string;

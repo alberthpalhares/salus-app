@@ -10,3 +10,6 @@ export * as repositoriodocumentos from './documentos';
 export * as repositorioperfilConfig from './perfilConfig';
 export * as repositoriofamilia from './familia';
 export * as repositorioconversas from './conversas';
+export * as repositorioprofissionais from './profissionais';
+export * as repositoriohistoricoPrecos from './historicoPrecos';
+export * as repositoriocondicoes from './condicoes';

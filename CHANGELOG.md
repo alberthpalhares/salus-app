@@ -5,6 +5,18 @@ Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.0/),
 e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
 
+## [0.4.4] - 2026-08-01
+
+### Adicionado
+- **Painel de Gestão Familiar & Avatares Lúdicos**: Avatares ilustrados para pessoas e pets (`AvatarMembro.tsx`), seleção visual, edição de integrantes e exclusão segura (`ModalEditarMembro.tsx`).
+- **Dashboard Inteligente de Indicadores & Gráficos**: Banner de KPIs de topo (`DashboardKpiBanner.tsx`), gráfico de distribuição de saúde (`GraficoResumoSaude.tsx`) e cards de tarefas e alertas prioritários.
+- **Reestruturação Visual das Condições em Acompanhamento**: Transição de texto corrido ("bolo de palavras") para cards categorizados por gravidade e especialista (`CondicoesFormatadasCard.tsx`).
+- **Cadastro de Médicos, Vets e Clínicas de Confiança**: Módulo e rotas para gerenciar especialistas de saúde, contatos, WhatsApp e vínculo com integrantes (`ProfissionaisTela.tsx`, `ModalEditarProfissional.tsx`).
+- **Histórico & Flutuação de Preço de Medicamentos**: Acompanhamento financeiro de medicamentos com gráfico de variação percentual de preço (% aumento/economia) e drogaria (`HistoricoPrecoMedicamentoCard.tsx`).
+- **Persistência Garantida BYOK Gemini API**: Armazenamento em `localStorage` (`salus_byok_config`) e Firestore com restauração automática de sessão.
+- **Ficha Médica Pública Seletiva & Impressa**: Modal de compartilhamento seletivo por módulo e tela pública de emergência/consulta (`ModalCompartilharFicha.tsx`, `FichaPublicaTela.tsx`).
+- **RFC de Acesso Familiar Multi-usuário**: Especificação técnica para compartilhamento de famílias entre contas distintas (`docs/RFC_COMPARTILHAMENTO_FAMILIA.md`).
+
 ## [0.4.3] - 2026-08-01
 
 ### Adicionado

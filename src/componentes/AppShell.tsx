@@ -7,6 +7,7 @@ import {
   LayoutDashboard,
   Inbox,
   MessageSquare,
+  Stethoscope,
   Settings,
   Sparkles,
   LogOut,
@@ -23,10 +24,12 @@ export const AppShell: React.FC = () => {
   const linksNavegacao = [
     { to: '/', rotulo: 'Painel', rotuloCurto: 'Painel', icone: LayoutDashboard },
     { to: '/caixa-de-entrada', rotulo: 'Caixa de Entrada', rotuloCurto: 'Entrada', icone: Inbox },
+    { to: '/profissionais', rotulo: 'Médicos & Clínicas', rotuloCurto: 'Médicos', icone: Stethoscope },
     { to: '/chat', rotulo: 'Chat Assistente', rotuloCurto: 'Chat', icone: MessageSquare },
     { to: '/ajustes', rotulo: 'Ajustes', rotuloCurto: 'Ajustes', icone: Settings },
     { to: '/sobre', rotulo: 'Sobre', rotuloCurto: 'Sobre', icone: Info },
   ];
+
 
   const handleSemearExemplo = async () => {
     if (!user?.uid || semeando) return;

@@ -3,7 +3,7 @@ import { cn } from '@/lib/utils';
 
 export interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
   children: React.ReactNode;
-  variante?: 'neutro' | 'teal' | 'alerta' | 'vencido' | 'default' | 'secondary' | 'destructive' | 'outline';
+  variante?: 'neutro' | 'teal' | 'alerta' | 'vencido' | 'default' | 'secondary' | 'destructive' | 'outline' | 'rose' | 'amber';
   tamanho?: 'sm' | 'md';
   icone?: React.ReactNode;
 }
@@ -22,10 +22,13 @@ export const Badge: React.FC<BadgeProps> = ({
     teal: 'bg-teal-50 text-teal-800 border-teal-200/80 font-medium',
     default: 'bg-teal-50 text-teal-800 border-teal-200/80 font-medium',
     alerta: 'bg-amber-50 text-amber-900 border-amber-200/80 font-medium',
+    amber: 'bg-amber-50 text-amber-900 border-amber-200/80 font-medium',
     vencido: 'bg-rose-50 text-rose-800 border-rose-200/80 font-semibold',
+    rose: 'bg-rose-50 text-rose-800 border-rose-200/80 font-semibold',
     destructive: 'bg-rose-50 text-rose-800 border-rose-200/80 font-semibold',
     outline: 'bg-transparent text-slate-700 border-slate-300',
   };
+
 
   const tamanhos = {
     sm: 'text-[11px] px-2 py-0.5 gap-1',
