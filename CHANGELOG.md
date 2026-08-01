@@ -5,6 +5,17 @@ Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.0/),
 e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
 
+## [0.4.3] - 2026-08-01
+
+### Adicionado
+- **Suíte de Skills Agnósticas de Engenharia**:
+  - `dev-feature`: Construtor agnóstico de recursos & telas com validação T4.
+  - `dev-refactor`: Decompositor agnóstico de monólitos & quitação de débito técnico.
+  - `dev-audit`: Auditoria agnóstica de compilação, testes e limites de tamanho de arquivos.
+  - `dev-sync-docs`: Sincronizador agnóstico da documentação técnica e especificações.
+  - `dev-test-suite`: Validador agnóstico de regras de negócio e cenários BDD.
+  - `dev-release`: Automação agnóstica de lançamentos de versão e tagging no Git.
+
 ## [0.4.2] - 2026-08-01
 
 ### Adicionado
