@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
 import { useAuth } from '../auth/AuthProvider';
 import { semearDadosDeExemplo } from '../data/seed';
+import { SisafamLogo } from '../components/ui/logo';
 import {
   LayoutDashboard,
   Inbox,
@@ -10,7 +11,6 @@ import {
   Sparkles,
   LogOut,
   User as UserIcon,
-  HeartPulse,
   Info,
   AlertTriangle,
   UserCheck,
@@ -45,17 +45,9 @@ export const AppShell: React.FC = () => {
     <div className="min-h-screen min-h-[100dvh] bg-slate-50 flex flex-col md:flex-row text-slate-800 font-sans">
       {/* Sidebar Desktop (fixa à esquerda em telas md+) */}
       <aside className="hidden md:flex md:w-64 md:flex-col md:fixed md:inset-y-0 bg-white border-r border-slate-200 z-30" role="navigation" aria-label="Menu principal">
-        {/* Cabeçalho da Sidebar - Logo */}
+        {/* Cabeçalho da Sidebar - Logo Oficial SISAFAM */}
         <div className="p-6 border-b border-slate-100 flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-teal-600 text-white flex items-center justify-center shadow-xs">
-            <HeartPulse className="w-6 h-6" />
-          </div>
-          <div>
-            <h1 className="text-xl font-bold tracking-tight text-slate-900 flex items-center gap-1.5">
-              Salus <span className="text-base">🩺</span>
-            </h1>
-            <p className="text-xs text-slate-500 font-medium">Saúde da Família</p>
-          </div>
+          <SisafamLogo variant="full" size="md" />
         </div>
 
         {/* Links de Navegação Desktop */}
@@ -100,7 +92,7 @@ export const AppShell: React.FC = () => {
               )}
               <div className="min-w-0 flex-1">
                 <p className="text-xs font-bold text-slate-800 truncate">
-                  {user?.displayName || 'Usuário Salus'}
+                  {user?.displayName || 'Usuário SISAFAM'}
                 </p>
                 <p className="text-[11px] text-slate-500 truncate">{user?.email}</p>
               </div>
@@ -148,16 +140,9 @@ export const AppShell: React.FC = () => {
           </div>
         )}
 
-        {/* Header Mobile com Logo e Sair */}
+        {/* Header Mobile com Logo SISAFAM */}
         <header className="md:hidden bg-white border-b border-slate-200 px-4 py-3 flex items-center justify-between sticky top-0 z-20" style={{ paddingTop: 'max(0.75rem, env(safe-area-inset-top))' }}>
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg bg-teal-600 text-white flex items-center justify-center">
-              <HeartPulse className="w-5 h-5" />
-            </div>
-            <span className="font-bold text-slate-900 text-lg flex items-center gap-1">
-              Salus 🩺
-            </span>
-          </div>
+          <SisafamLogo variant="full" size="sm" />
 
           <button
             onClick={() => sair()}
@@ -176,7 +161,7 @@ export const AppShell: React.FC = () => {
         {/* Rodapé Permanente com Isenção Clínica Obrigatória e Link de Privacidade */}
         <footer className="mt-auto bg-white border-t border-slate-200 py-3 px-4 text-center">
           <p className="text-xs text-slate-500 max-w-4xl mx-auto leading-relaxed">
-            O Salus organiza informações de saúde. Ele não diagnostica, não prescreve e não substitui médico ou veterinário.{' '}
+            O SISAFAM organiza informações de saúde. Ele não diagnostica, não prescreve e não substitui médico ou veterinário.{' '}
             <NavLink to="/privacidade" className="text-teal-700 font-semibold underline hover:text-teal-900 ml-1">
               Privacidade & Termos
             </NavLink>

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { ShieldCheck, Key, Lock, HeartPulse, Cloud, Sparkles } from 'lucide-react';
+import { ShieldCheck, Key, Lock, Cloud, Sparkles } from 'lucide-react';
 import { useAuth } from '../auth/useAuth';
+import { SisafamLogo } from '../components/ui/logo';
 
 export const LoginScreen: React.FC = () => {
   const { signInWithGoogle, signInAnonymouslyUser } = useAuth();
@@ -37,23 +38,18 @@ export const LoginScreen: React.FC = () => {
     <div className="min-h-screen bg-slate-900 text-slate-100 flex flex-col justify-center items-center p-4">
       <div className="max-w-xl w-full bg-slate-800/90 backdrop-blur-md rounded-2xl border border-slate-700/80 shadow-2xl p-8 space-y-8">
         
-        {/* Header */}
-        <div className="text-center space-y-3">
-          <div className="inline-flex items-center justify-center p-3.5 bg-emerald-500/10 border border-emerald-500/20 rounded-2xl text-emerald-400 mb-2">
-            <HeartPulse className="w-9 h-9" />
-          </div>
-          <h1 className="text-3xl font-bold tracking-tight text-slate-100">
-            Salus <span className="text-emerald-400 font-normal text-xl">| Saúde da Família</span>
-          </h1>
-          <p className="text-slate-300 text-sm max-w-md mx-auto leading-relaxed">
-            Organize exames, laudos e histórico clínico de toda a família — pessoas e animais de estimação — com privacidade individual e chaves próprias de IA.
+        {/* Header com Logo Oficial SISAFAM */}
+        <div className="text-center space-y-4 flex flex-col items-center">
+          <SisafamLogo variant="full" size="xl" />
+          <p className="text-slate-300 text-sm max-w-md mx-auto leading-relaxed pt-2">
+            Organize exames, laudos e histórico clínico de toda a família — pessoas e animais de estimação — com inteligência artificial, privacidade individual e chaves próprias.
           </p>
         </div>
 
         {/* Highlight Badges */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs text-slate-300">
           <div className="flex items-start gap-2.5 p-3 rounded-xl bg-slate-900/60 border border-slate-700/50">
-            <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+            <ShieldCheck className="w-4 h-4 text-teal-400 shrink-0 mt-0.5" />
             <div>
               <span className="font-semibold text-slate-200 block">Isolamento Multi-Tenant</span>
               Seus dados médicos ficam no seu Firestore exclusivo.
@@ -61,7 +57,7 @@ export const LoginScreen: React.FC = () => {
           </div>
 
           <div className="flex items-start gap-2.5 p-3 rounded-xl bg-slate-900/60 border border-slate-700/50">
-            <Key className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+            <Key className="w-4 h-4 text-teal-400 shrink-0 mt-0.5" />
             <div>
               <span className="font-semibold text-slate-200 block">Sua Própria Chave (BYOK)</span>
               Cadastre sua chave Gemini ou DeepSeek em Ajustes.
@@ -69,7 +65,7 @@ export const LoginScreen: React.FC = () => {
           </div>
 
           <div className="flex items-start gap-2.5 p-3 rounded-xl bg-slate-900/60 border border-slate-700/50">
-            <Cloud className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+            <Cloud className="w-4 h-4 text-teal-400 shrink-0 mt-0.5" />
             <div>
               <span className="font-semibold text-slate-200 block">Google Drive & Agenda</span>
               Sincronize backups e lembretes de vacinas/consultas.
@@ -77,7 +73,7 @@ export const LoginScreen: React.FC = () => {
           </div>
 
           <div className="flex items-start gap-2.5 p-3 rounded-xl bg-slate-900/60 border border-slate-700/50">
-            <Lock className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+            <Lock className="w-4 h-4 text-teal-400 shrink-0 mt-0.5" />
             <div>
               <span className="font-semibold text-slate-200 block">Núcleo Clínico Seguro</span>
               Sem diagnósticos automáticos, sem alarde e com propostas.
@@ -128,15 +124,15 @@ export const LoginScreen: React.FC = () => {
           <button
             onClick={handleLoginAnonimo}
             disabled={loading || loadingAnonimo}
-            className="w-full flex items-center justify-center gap-2 bg-slate-800 hover:bg-slate-700/80 text-emerald-300 font-semibold py-3 px-4 rounded-xl border border-emerald-500/30 transition-all duration-200 text-sm cursor-pointer disabled:opacity-50"
+            className="w-full flex items-center justify-center gap-2 bg-slate-800 hover:bg-slate-700/80 text-teal-300 font-semibold py-3 px-4 rounded-xl border border-teal-500/30 transition-all duration-200 text-sm cursor-pointer disabled:opacity-50"
           >
-            <Sparkles className="w-4 h-4 text-emerald-400" />
+            <Sparkles className="w-4 h-4 text-teal-400" />
             {loadingAnonimo ? 'Iniciando modo experimental...' : 'Experimentar sem criar conta'}
           </button>
 
           <p className="text-[11px] text-center text-slate-400">
             Ao entrar, você concorda com o armazenamento isolado dos dados de saúde da sua família no seu próprio ambiente Firebase.{' '}
-            <a href="/privacidade" className="text-emerald-400 hover:underline">
+            <a href="/privacidade" className="text-teal-400 hover:underline">
               Política de Privacidade & Termos
             </a>
           </p>

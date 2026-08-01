@@ -38,7 +38,7 @@ export const PassoBoasVindas: React.FC<PassoBoasVindasProps> = ({
             Privacidade, Segurança e Isenção Clínica
           </h2>
           <p className="text-xs text-slate-500">
-            Leia com atenção como seus dados de saúde são tratados no Salus.
+            Leia com atenção como seus dados de saúde são tratados no SISAFAM.
           </p>
         </div>
       </div>
@@ -82,7 +82,7 @@ export const PassoBoasVindas: React.FC<PassoBoasVindasProps> = ({
         <div className="flex items-start gap-3 pt-2 border-t border-slate-200/80">
           <AlertCircle className="w-4 h-4 text-amber-600 shrink-0 mt-1" />
           <p className="text-slate-800 font-medium">
-            <strong>Isenção Médica e Veterinária:</strong> O Salus organiza e cruza dados de saúde. Ele <u>nunca diagnostica</u>, <u>nunca prescreve</u> e não substitui a consulta nem a interpretação de um profissional de saúde qualificado.
+            <strong>Isenção Médica e Veterinária:</strong> O SISAFAM organiza e cruza dados de saúde. Ele <u>nunca diagnostica</u>, <u>nunca prescreve</u> e não substitui a consulta nem a interpretação de um profissional de saúde qualificado.
           </p>
         </div>
       </div>
@@ -96,7 +96,7 @@ export const PassoBoasVindas: React.FC<PassoBoasVindasProps> = ({
             className="w-4 h-4 mt-0.5 rounded text-teal-600 focus:ring-teal-500 border-slate-300"
           />
           <span className="text-xs sm:text-sm font-semibold text-slate-800">
-            Entendi como meus dados são tratados e guardados no Salus.
+            Entendi como meus dados são tratados e guardados no SISAFAM.
           </span>
         </label>
 

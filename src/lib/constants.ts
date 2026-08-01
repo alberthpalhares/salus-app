@@ -1,5 +1,5 @@
 /**
- * Constantes Globais do Salus App
+ * Constantes Globais do SISAFAM (Sistema de Saúde da Família)
  * Fonte única de verdade para literais, opções de formulário e valores padrão.
  */
 
@@ -101,7 +101,7 @@ export const PRESETS_PROVEDOR_IA = [
 // --- MENSAGENS E ISENÇÃO CLINICA ---
 
 export const ISENCAO_CLINICA_TEXTO =
-  'O Salus organiza informações de saúde. Ele não diagnostica, não prescreve e não substitui médico ou veterinário.';
+  'O SISAFAM organiza informações de saúde. Ele não diagnostica, não prescreve e não substitui médico ou veterinário.';
 
 export const TIMEOUTS = {
   CHAT_REQUEST_MS: 45000,

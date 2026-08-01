@@ -96,7 +96,7 @@ export const PassoConclusao: React.FC<PassoConclusaoProps> = ({
           <span>Chave de API do Google Gemini (BYOK)</span>
         </div>
         <p className="leading-relaxed">
-          Os recursos de Inteligência Artificial do Salus (análise de exames, extração de receitas e chat assistente) utilizam a sua própria chave de API do Gemini. Você poderá cadastrá-la em <strong>Ajustes</strong> a qualquer momento de forma gratuita.
+          Os recursos de Inteligência Artificial do SISAFAM (análise de exames, extração de receitas e chat assistente) utilizam a sua própria chave de API do Gemini. Você poderá cadastrá-la em <strong>Ajustes</strong> a qualquer momento de forma gratuita.
         </p>
       </div>
 

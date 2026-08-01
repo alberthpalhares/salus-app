@@ -241,7 +241,7 @@ export const OnboardingTela: React.FC = () => {
           <span>Configuração Inicial da Família</span>
         </div>
         <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
-          Bem-vindo ao Salus 🩺
+          Bem-vindo ao SISAFAM 🩺
         </h1>
         <p className="text-sm text-slate-600 max-w-lg mx-auto">
           Organize o histórico de saúde de toda a sua família (pessoas e pets) em poucas etapas.

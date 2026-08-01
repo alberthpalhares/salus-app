@@ -142,7 +142,7 @@ export const CaixaDeEntradaTela: React.FC = () => {
             </div>
             <h3 className="text-base font-bold text-slate-800">Sua Caixa de Entrada está vazia</h3>
             <p className="text-xs text-slate-500 leading-relaxed">
-              Arraste exames, receitas ou áudios de consultas para a área acima. O Salus extrai as informações para você conferir antes de salvar.
+              Arraste exames, receitas ou áudios de consultas para a área acima. O SISAFAM extrai as informações para você conferir antes de salvar.
             </p>
           </div>
         </Card>

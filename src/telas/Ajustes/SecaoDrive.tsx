@@ -124,20 +124,20 @@ export const SecaoDrive: React.FC = () => {
               )}
             </div>
             <p className="text-xs text-slate-500">
-              Os seus arquivos e laudos de saúde são salvos na sua pasta <strong>"Salus App"</strong> do Google Drive.
+              Os seus arquivos e laudos de saúde são salvos na sua pasta <strong>"SISAFAM App"</strong> do Google Drive.
             </p>
           </div>
         </div>
       </div>
 
-      <div className="p-3.5 bg-slate-50 rounded-xl border border-slate-200/80 text-xs text-slate-600 space-y-2 mb-4">
-        <p>
-          O Salus não guarda nenhum arquivo PDF ou foto em servidores próprios. Todos os documentos ficam armazenados diretamente no seu Google Drive com acesso seguro.
+      <div className="space-y-4 mb-4">
+        <p className="text-xs text-slate-600 leading-relaxed">
+          O SISAFAM não guarda nenhum arquivo PDF ou foto em servidores próprios. Todos os documentos ficam armazenados diretamente no seu Google Drive com acesso seguro.
         </p>
         {driveConectado && (
-          <div className="flex items-center gap-1.5 text-emerald-800 font-medium">
+          <div className="p-3 bg-emerald-50 border border-emerald-200/80 rounded-xl text-emerald-900 text-xs font-semibold flex items-center gap-2">
             <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-            <span>Conexão ativa com o escopo drive.file. A pasta Salus App está pronta.</span>
+            <span>Conexão ativa com o escopo drive.file. A pasta SISAFAM App está pronta.</span>
           </div>
         )}
       </div>

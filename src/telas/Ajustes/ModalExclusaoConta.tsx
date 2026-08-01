@@ -35,7 +35,7 @@ export const ModalExclusaoConta: React.FC<ModalExclusaoContaProps> = ({
           </div>
 
           <div className="p-3.5 bg-amber-50 border border-amber-200 rounded-xl text-xs text-amber-900 leading-relaxed">
-            Isso apaga permanentemente todos os seus dados estruturados do Salus App. Seus documentos no Google Drive <strong>NÃO são apagados</strong> — continuam com você, na sua pasta "Salus App". Recomendamos fazer o download do seu backup antes.
+            Isso apaga permanentemente todos os seus dados estruturados do SISAFAM App. Seus documentos no Google Drive <strong>NÃO são apagados</strong> — continuam com você, na sua pasta "SISAFAM App". Recomendamos fazer o download do seu backup antes.
           </div>
 
           <div className="space-y-2 pt-2">
@@ -81,7 +81,7 @@ export const ModalExclusaoConta: React.FC<ModalExclusaoContaProps> = ({
         </div>
 
         <p className="text-xs text-slate-600 leading-relaxed">
-          Esta ação é <strong>irreversível</strong>. Todos os membros, exames, vacinas, medicamentos e histórico do Salus App serão apagados permanentemente da sua conta.
+          Esta ação é <strong>irreversível</strong>. Todos os membros, exames, vacinas, medicamentos e histórico do SISAFAM App serão apagados permanentemente da sua conta.
         </p>
 
         <div className="space-y-2">

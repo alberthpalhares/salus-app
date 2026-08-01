@@ -63,7 +63,7 @@ export const SecaoBYOK: React.FC = () => {
             Inteligência Artificial (BYOK — Sua Própria Chave)
           </h2>
           <p className="text-xs text-slate-500 mt-1 leading-relaxed max-w-2xl">
-            Escolha o provedor de IA e cole sua chave de API pessoal. Suas credenciais são salvas apenas na sua conta Firestore e usadas para extração de documentos e no chat. O Salus funciona 100% sem IA caso você prefira cadastrar tudo à mão.
+            Escolha o provedor de IA e cole sua chave de API pessoal. Suas credenciais são salvas apenas na sua conta Firestore e usadas para extração de documentos e no chat. O SISAFAM funciona 100% sem IA caso você prefira cadastrar tudo à mão.
           </p>
         </div>
       </div>

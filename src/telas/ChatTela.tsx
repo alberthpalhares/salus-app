@@ -40,10 +40,10 @@ export const ChatTela: React.FC = () => {
         <div>
           <div className="flex items-center gap-2 mb-0.5">
             <h1 className="text-2xl font-extrabold text-slate-900 tracking-tight">
-              Chat Assistente Salus
+              Chat Assistente SISAFAM
             </h1>
             <Badge variante="teal" icone={<Sparkles className="w-3.5 h-3.5" />}>
-              Salus AI
+              SISAFAM AI
             </Badge>
           </div>
           <p className="text-xs text-slate-600">
@@ -133,7 +133,7 @@ export const ChatTela: React.FC = () => {
                 </div>
                 <div className="p-3.5 bg-white border border-slate-200/80 rounded-2xl rounded-tl-none text-xs text-slate-500 flex items-center gap-2">
                   <RefreshCw className="w-3.5 h-3.5 animate-spin text-teal-600" />
-                  <span>Salus está consultando os dados e gerando a resposta...</span>
+                  <span>SISAFAM está consultando os dados e gerando a resposta...</span>
                 </div>
               </div>
             )}

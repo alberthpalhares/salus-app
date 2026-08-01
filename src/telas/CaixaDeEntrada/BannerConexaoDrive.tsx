@@ -41,7 +41,7 @@ export const BannerConexaoDrive: React.FC<BannerConexaoDriveProps> = ({
               Conecte o Google Drive para arquivar seus documentos (opcional)
             </h3>
             <p className="text-xs text-amber-900 mt-0.5">
-              Sem conectar, você ainda pode organizar documentos normalmente — os dados extraídos são salvos, só o arquivo original não fica anexado. Conecte para guardar o PDF/foto original na pasta &quot;Salus App&quot; do seu próprio Google Drive.
+              Sem conectar, você ainda pode organizar documentos normalmente — os dados extraídos são salvos, só o arquivo original não fica anexado. Conecte para guardar o PDF/foto original na pasta &quot;SISAFAM App&quot; do seu próprio Google Drive.
             </p>
           </div>
         </div>

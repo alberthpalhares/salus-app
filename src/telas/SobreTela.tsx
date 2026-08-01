@@ -1,16 +1,13 @@
 import React from 'react';
 import { Card } from '../componentes/ui/Card';
 import { Badge } from '../componentes/ui/Badge';
+import { SisafamLogo } from '../components/ui/logo';
 import {
-  HeartPulse,
   ShieldCheck,
   Key,
   HardDrive,
   Code,
-  FileText,
-  Sparkles,
   ExternalLink,
-  UserCheck,
   Zap,
 } from 'lucide-react';
 
@@ -20,20 +17,8 @@ export const SobreTela: React.FC = () => {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-200">
         <div className="flex items-center gap-3.5">
-          <div className="w-12 h-12 rounded-2xl bg-teal-600 text-white flex items-center justify-center shadow-md shrink-0">
-            <HeartPulse className="w-7 h-7" />
-          </div>
-          <div>
-            <div className="flex items-center gap-2">
-              <h1 className="text-2xl font-extrabold text-slate-900 tracking-tight">
-                Sobre o Salus
-              </h1>
-              <Badge variante="teal">v0.4.0 Pilot App</Badge>
-            </div>
-            <p className="text-xs text-slate-600 font-medium mt-0.5">
-              Projeto Piloto de Portfólio — Central de Inteligência de Saúde da Família (Gratuito e Privado)
-            </p>
-          </div>
+          <SisafamLogo variant="full" size="lg" />
+          <Badge variante="teal">v0.4.3 Pilot App</Badge>
         </div>
 
         <a
@@ -52,14 +37,14 @@ export const SobreTela: React.FC = () => {
 
       {/* Grid Principal */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {/* Card 1: O que é o Salus */}
+        {/* Card 1: O que é o SISAFAM */}
         <Card className="space-y-3">
           <div className="flex items-center gap-2.5 text-teal-700">
-            <HeartPulse className="w-5 h-5 shrink-0 text-teal-600" />
-            <h2 className="text-base font-bold text-slate-800">O que é o Salus?</h2>
+            <SisafamLogo variant="icon" size="sm" />
+            <h2 className="text-base font-bold text-slate-800">O que é o SISAFAM?</h2>
           </div>
           <p className="text-xs text-slate-600 leading-relaxed">
-            O **Salus** é um gerenciador completo do histórico de saúde familiar. Ele permite cadastrar pessoas e animais de estimação (cães e gatos), organizar exames de laboratório, controlar receitas e medicamentos em uso, rastrear vacinas e manter uma linha do tempo clínica unificada.
+            O **SISAFAM** (Sistema de Saúde da Família) é um gerenciador completo do histórico de saúde familiar. Ele permite cadastrar pessoas e animais de estimação (cães e gatos), organizar exames de laboratório, controlar receitas e medicamentos em uso, rastrear vacinas e manter uma linha do tempo clínica unificada.
           </p>
           <div className="pt-2 border-t border-slate-100 flex flex-wrap gap-1.5 text-[11px] text-slate-600 font-medium">
             <span className="px-2 py-0.5 bg-slate-100 rounded-md">Pessoas & Pets</span>
@@ -93,7 +78,7 @@ export const SobreTela: React.FC = () => {
             Quando você opta por ativar os recursos de IA, utiliza a sua própria chave de API (Google Gemini, Groq, OpenRouter, Mistral ou OpenAI) — todas com **opções de cota gratuita**.
           </p>
           <p className="text-xs text-slate-600 leading-relaxed">
-            Os arquivos originais (PDFs e fotos) vivem no **seu próprio Google Drive** na pasta <code className="bg-slate-100 px-1 py-0.5 rounded text-teal-800 font-mono">Salus App</code>. O mantenedor do Salus **não vê, não armazena, não acessa e não paga** pelo seu uso ou pelos seus arquivos.
+            Os arquivos originais (PDFs e fotos) vivem no **seu próprio Google Drive** na pasta <code className="bg-slate-100 px-1 py-0.5 rounded text-teal-800 font-mono">SISAFAM App</code>. O mantenedor do SISAFAM **não vê, não armazena, não acessa e não paga** pelo seu uso ou pelos seus arquivos.
           </p>
         </Card>
 
@@ -115,7 +100,7 @@ export const SobreTela: React.FC = () => {
       {/* Card Núcleo Clínico Inviolável */}
       <Card className="p-5 space-y-3 bg-slate-900 text-slate-100 border-slate-800 shadow-xl">
         <div className="flex items-center gap-3">
-          <ShieldCheck className="w-6 h-6 text-emerald-400 shrink-0" />
+          <ShieldCheck className="w-6 h-6 text-teal-400 shrink-0" />
           <div>
             <h2 className="text-sm font-bold text-slate-100">Núcleo Clínico Inviolável</h2>
             <p className="text-xs text-slate-400">Requisitos éticos e de segurança integrados ao sistema</p>
@@ -124,20 +109,20 @@ export const SobreTela: React.FC = () => {
 
         <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-slate-300 pt-2">
           <li className="flex items-start gap-2 bg-slate-800/80 p-2.5 rounded-lg border border-slate-700/60">
-            <span className="text-emerald-400 font-bold">•</span>
-            <span><strong>Sem diagnósticos ou prescrições:</strong> O Salus organiza e cruza dados; a decisão médica é do profissional.</span>
+            <span className="text-teal-400 font-bold">•</span>
+            <span><strong>Sem diagnósticos ou prescrições:</strong> O SISAFAM organiza e cruza dados; a decisão médica é do profissional.</span>
           </li>
           <li className="flex items-start gap-2 bg-slate-800/80 p-2.5 rounded-lg border border-slate-700/60">
-            <span className="text-emerald-400 font-bold">•</span>
+            <span className="text-teal-400 font-bold">•</span>
             <span><strong>Sem faixas calculadas:</strong> Respeita estritamente a faixa de referência impressa no próprio laudo.</span>
           </li>
           <li className="flex items-start gap-2 bg-slate-800/80 p-2.5 rounded-lg border border-slate-700/60">
-            <span className="text-emerald-400 font-bold">•</span>
+            <span className="text-teal-400 font-bold">•</span>
             <span><strong>Propostas com aprovação:</strong> Nenhuma informação de IA altera dados sem confirmação explícita do usuário.</span>
           </li>
           <li className="flex items-start gap-2 bg-slate-800/80 p-2.5 rounded-lg border border-slate-700/60">
-            <span className="text-emerald-400 font-bold">•</span>
-            <span><strong>Privacidade individual:</strong> Isolamento estrito por usuário no Firestore (<code className="text-emerald-300">/usuarios/&#123;uid&#125;/...</code>).</span>
+            <span className="text-teal-400 font-bold">•</span>
+            <span><strong>Privacidade individual:</strong> Isolamento estrito por usuário no Firestore (<code className="text-teal-300">/usuarios/&#123;uid&#125;/...</code>).</span>
           </li>
         </ul>
       </Card>
@@ -147,7 +132,7 @@ export const SobreTela: React.FC = () => {
         <div className="flex items-center gap-2">
           <Code className="w-4 h-4 text-teal-600 shrink-0" />
           <span>
-            Desenvolvido por <strong>Alberth Palhares</strong> e Comunidade Salus.
+            Desenvolvido por <strong>Alberth Palhares</strong> e Comunidade SISAFAM.
           </span>
         </div>
 

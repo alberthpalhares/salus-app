@@ -43,10 +43,10 @@ export const PassoDrive: React.FC<PassoDriveProps> = ({
 
       <div className="space-y-4 text-xs sm:text-sm text-slate-700 leading-relaxed bg-slate-50/70 p-4 rounded-xl border border-slate-200/60">
         <p>
-          O Salus <strong>não guarda nenhum arquivo</strong> (PDFs, laudos, exames ou fotos) na infraestrutura do aplicativo.
+          O SISAFAM <strong>não guarda nenhum arquivo</strong> (PDFs, laudos, exames ou fotos) na infraestrutura do aplicativo.
         </p>
         <p>
-          Todos os seus documentos originais serão salvos diretamente na sua conta do <strong>Google Drive</strong>, em uma pasta dedicada chamada <strong>"Salus App"</strong>.
+          Todos os seus documentos originais serão salvos diretamente na sua conta do <strong>Google Drive</strong>, em uma pasta dedicada chamada <strong>"SISAFAM App"</strong>.
         </p>
         <div className="p-3 bg-teal-50 border border-teal-200 rounded-lg text-teal-900 font-medium text-xs">
           ✓ <strong>Consentimento único:</strong> Você autoriza a conexão uma única vez. O acesso funciona em segundo plano, silenciosamente, sem interrupções nos próximos usos.

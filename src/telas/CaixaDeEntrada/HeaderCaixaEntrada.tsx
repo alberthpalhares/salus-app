@@ -35,7 +35,7 @@ export const HeaderCaixaEntrada: React.FC<HeaderCaixaEntradaProps> = ({
             </Badge>
           </div>
           <p className="text-sm text-slate-600">
-            Receba e armazene laudos, exames e receitas com segurança na pasta "Salus App" do seu Google Drive.
+            Receba e armazene laudos, exames e receitas com segurança na pasta "SISAFAM App" do seu Google Drive.
           </p>
         </div>
 

@@ -78,7 +78,7 @@ export const AjustesTela: React.FC = () => {
       setResumoImport(resumo);
     } catch (err: unknown) {
       console.error('Erro ao analisar arquivo de importação:', err);
-      alert('Arquivo inválido ou corrompido. Certifique-se de selecionar um arquivo .ZIP exportado do Salus.');
+      alert('Arquivo inválido ou corrompido. Certifique-se de selecionar um arquivo .ZIP exportado do SISAFAM.');
     } finally {
       setAnalisandoImport(false);
       e.target.value = '';
@@ -180,7 +180,7 @@ export const AjustesTela: React.FC = () => {
             <div>
               <h3 className="text-base font-bold text-slate-800">Zona de Perigo — Exclusão de Conta</h3>
               <p className="text-xs text-slate-500">
-                Apague sua conta e todos os dados estruturados do Salus App definitivamente.
+                Apague sua conta e todos os dados estruturados do SISAFAM App definitivamente.
               </p>
             </div>
           </div>

@@ -14,7 +14,7 @@ export const SemChaveChatCard: React.FC = () => {
         Chave do Gemini Não Configurada
       </h3>
       <p className="text-sm text-amber-800 max-w-md">
-        Para conversar com o Assistente Salus sobre a saúde da sua família, você precisa cadastrar
+        Para conversar com o Assistente SISAFAM sobre a saúde da sua família, você precisa cadastrar
         sua própria chave de API gratuita do Google Gemini em <strong>Ajustes</strong>.
       </p>
       <div className="pt-2 flex flex-col sm:flex-row items-center gap-3">

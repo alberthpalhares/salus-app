@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Card } from '../componentes/ui/Card';
 import { Badge } from '../componentes/ui/Badge';
+import { SisafamLogo } from '../components/ui/logo';
 import {
   ShieldCheck,
   Key,
@@ -28,7 +29,8 @@ export const PrivacidadeTela: React.FC = () => {
           >
             <ArrowLeft className="w-3.5 h-3.5" /> Voltar para Ajustes
           </Link>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-3">
+            <SisafamLogo variant="icon" size="sm" />
             <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
               Transparência & Privacidade
             </h1>
@@ -37,7 +39,7 @@ export const PrivacidadeTela: React.FC = () => {
             </Badge>
           </div>
           <p className="text-sm text-slate-600 mt-1">
-            Entenda como seus dados e documentos de saúde são protegidos e mantidos sob seu controle total.
+            Entenda como seus dados e documentos de saúde são protegidos no SISAFAM e mantidos sob seu controle total.
           </p>
         </div>
       </div>
@@ -51,12 +53,12 @@ export const PrivacidadeTela: React.FC = () => {
           <div>
             <h2 className="text-lg font-bold text-white">Compromisso com a Sua Privacidade</h2>
             <p className="text-xs text-teal-200">
-              O Salus foi projetado com isolamento total por login e sem retenção centralizada de documentos.
+              O SISAFAM foi projetado com isolamento total por login e sem retenção centralizada de documentos.
             </p>
           </div>
         </div>
         <p className="text-xs text-slate-300 leading-relaxed">
-          Sua privacidade não é uma funcionalidade secundária; é a fundação do Salus. Toda informação clínica cadastrada pertence exclusivamente a você. O aplicativo funciona sem intermediate de terceiros, sem venda de dados e sem dependência obrigatória de Inteligência Artificial.
+          Sua privacidade não é uma funcionalidade secundária; é a fundação do SISAFAM. Toda informação clínica cadastrada pertence exclusivamente a você. O aplicativo funciona sem intermediários de terceiros, sem venda de dados e sem dependência obrigatória de Inteligência Artificial.
         </p>
       </Card>
 
@@ -72,7 +74,7 @@ export const PrivacidadeTela: React.FC = () => {
           </div>
         </div>
         <p className="text-sm text-slate-700 leading-relaxed">
-          Você não precisa de Inteligência Artificial para usar o Salus. Todas as funções essenciais — cadastrar membros da família (pessoas e pets), registrar vacinas, exames, medicamentos, montar o histórico, consultar a agenda, ver alertas e anexar documentos — funcionam de forma <strong>100% manual</strong>, rápida e gratuita, sem qualquer envio para modelos de IA.
+          Você não precisa de Inteligência Artificial para usar o SISAFAM. Todas as funções essenciais — cadastrar membros da família (pessoas e pets), registrar vacinas, exames, medicamentos, montar o histórico, consultar a agenda, ver alertas e anexar documentos — funcionam de forma <strong>100% manual</strong>, rápida e gratuita, sem qualquer envio para modelos de IA.
         </p>
         <div className="p-3 bg-teal-50/60 rounded-xl border border-teal-200/60 text-xs text-teal-900 flex items-center gap-2">
           <CheckCircle2 className="w-4 h-4 text-teal-600 shrink-0" />
@@ -92,7 +94,7 @@ export const PrivacidadeTela: React.FC = () => {
           </div>
         </div>
         <p className="text-sm text-slate-700 leading-relaxed">
-          Os dados estruturados de saúde (fichas de membros, vacinas, exames cadastrados e lista de remédios) são armazenados no banco de dados do <strong>Salus App (Firestore)</strong> sob o caminho seguro <code>/usuarios/&#123;seu_uid&#125;/...</code>.
+          Os dados estruturados de saúde (fichas de membros, vacinas, exames cadastrados e lista de remédios) são armazenados no banco de dados do <strong>SISAFAM (Firestore)</strong> sob o caminho seguro <code>/usuarios/&#123;seu_uid&#125;/...</code>.
         </p>
         <p className="text-sm text-slate-700 leading-relaxed">
           As regras de segurança garantem que <strong>apenas a sua conta autenticada</strong> consegue ler ou modificar seus registros. Nenhum outro usuário do aplicativo consegue visualizar seus dados.
@@ -111,10 +113,10 @@ export const PrivacidadeTela: React.FC = () => {
           </div>
         </div>
         <p className="text-sm text-slate-700 leading-relaxed">
-          O Salus <strong>nunca armazena</strong> seus arquivos originais (PDFs, fotos de laudos, receitas médicas ou exames) na infraestrutura do aplicativo. Todos os seus documentos são salvos diretamente em uma pasta dedicada chamada <strong>"Salus App"</strong> dentro da sua própria conta do Google Drive.
+          O SISAFAM <strong>nunca armazena</strong> seus arquivos originais (PDFs, fotos de laudos, receitas médicas ou exames) na infraestrutura do aplicativo. Todos os seus documentos são salvos diretamente em uma pasta dedicada chamada <strong>"SISAFAM App"</strong> dentro da sua própria conta do Google Drive.
         </p>
         <p className="text-sm text-slate-700 leading-relaxed">
-          A permissão solicitada ao Google Drive é estrita ao escopo <code>drive.file</code>, o que significa que o Salus só enxerga os arquivos e pastas criados pelo próprio aplicativo — mantendo todo o restante do seu Google Drive completamente privado. O mantenedor do Salus nunca tem acesso aos seus arquivos.
+          A permissão solicitada ao Google Drive é estrita ao escopo <code>drive.file</code>, o que significa que o SISAFAM só enxerga os arquivos e pastas criados pelo próprio aplicativo — mantendo todo o restante do seu Google Drive completamente privado. O mantenedor do SISAFAM nunca tem acesso aos seus arquivos.
         </p>
       </Card>
 
@@ -144,30 +146,30 @@ export const PrivacidadeTela: React.FC = () => {
             <ShieldCheck className="w-5 h-5" />
           </div>
           <div>
-            <h3 className="text-base font-bold text-slate-900">5. Acesso do Mantenedor do Salus</h3>
+            <h3 className="text-base font-bold text-slate-900">5. Acesso do Mantenedor do SISAFAM</h3>
             <p className="text-xs text-slate-500">Transparência total sobre a infraestrutura</p>
           </div>
         </div>
         <p className="text-sm text-slate-700 leading-relaxed">
-          O mantenedor do Salus App <strong>não acessa, lê ou consulta</strong> seus dados estruturados durante o uso cotidiano. No entanto, por razões de transparência, é importante esclarecer que o mantenedor possui acesso técnico de administrador à infraestrutura em nuvem (Firestore) onde o banco de dados está hospedado. Os documentos físicos (PDFs/fotos) continuam fora desse alcance por estarem no seu Google Drive.
+          O mantenedor do SISAFAM <strong>não acessa, lê ou consulta</strong> seus dados estruturados durante o uso cotidiano. No entanto, por razões de transparência, é importante esclarecer que o mantenedor possui acesso técnico de administrador à infraestrutura em nuvem (Firestore) onde o banco de dados está hospedado. Os documentos físicos (PDFs/fotos) continuam fora desse alcance por estarem no seu Google Drive.
         </p>
       </Card>
 
-      {/* Seção 6: O que o Salus NUNCA faz */}
+      {/* Seção 6: O que o SISAFAM NUNCA faz */}
       <Card className="p-6 space-y-3 border-amber-200/80 bg-amber-50/40">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 rounded-xl bg-amber-100 text-amber-800 flex items-center justify-center shrink-0">
             <AlertTriangle className="w-5 h-5" />
           </div>
           <div>
-            <h3 className="text-base font-bold text-amber-900">6. O Que o Salus NUNCA Faz</h3>
+            <h3 className="text-base font-bold text-amber-900">6. O Que o SISAFAM NUNCA Faz</h3>
             <p className="text-xs text-amber-700">Garantias do Núcleo Clínico Inviolável</p>
           </div>
         </div>
         <ul className="list-disc list-inside space-y-2 text-sm text-slate-800">
           <li><strong>Nunca diagnostica e nunca prescreve:</strong> O app organiza e relaciona informações. Toda interpretação clínica é exclusivamente do profissional de saúde.</li>
           <li><strong>Nunca usa faixas de referência memorizadas:</strong> Apenas a faixa impressa no laudo do exame é exibida.</li>
-          <li><strong>Nunca usa tom alarmista:</strong> Palavras como "urgente", "grave" ou "crítico" são proibidas na interface do Salus.</li>
+          <li><strong>Nunca usa tom alarmista:</strong> Palavras como "urgente", "grave" ou "crítico" são proibidas na interface do SISAFAM.</li>
           <li><strong>Nunca vende ou compartilha seus dados:</strong> Suas informações não são comercializadas com farmácias, planos de saúde ou seguradoras.</li>
           <li><strong>Nunca altera medicamentos para "em uso" automaticamente:</strong> Ao ler uma receita, o remédio fica marcado como <code>prescrito</code> e só passa a <code>em uso</code> sob sua confirmação.</li>
         </ul>
