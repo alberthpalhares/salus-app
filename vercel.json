@@ -3,6 +3,9 @@
   "buildCommand": "npm run vercel-build",
   "outputDirectory": "dist",
   "rewrites": [
+    { "source": "/api/backup/cron", "destination": "/api/backup?action=cron" },
+    { "source": "/api/backup/executar", "destination": "/api/backup?action=executar" },
+    { "source": "/api/backup/verificar", "destination": "/api/backup?action=verificar" },
     { "source": "/((?!api/).*)", "destination": "/index.html" }
   ],
   "headers": [

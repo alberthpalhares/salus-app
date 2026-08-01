@@ -5,6 +5,30 @@ import { adminDb } from '../_lib/firebase-admin.js';
 import { obterClienteDriveAutenticado, garantirPastaRaizDrive } from '../_lib/drive/clienteDrive.js';
 
 async function handler(req: VercelRequest, res: VercelResponse, ctx: AuthContext) {
+  const action = (req.query.action as string) || (req.url?.includes('verificar') ? 'verificar' : req.url?.includes('cron') ? 'cron' : 'executar');
+
+  if (action === 'verificar' || (req.method === 'GET' && action !== 'cron')) {
+    const ultimoBackup = ctx.userConfig.backup_automatico ? (ctx.userConfig as Record<string, unknown>).ultimo_backup : undefined;
+    const diasSemBackup = ultimoBackup
+      ? Math.floor((Date.now() - new Date(ultimoBackup as string).getTime()) / (1000 * 60 * 60 * 24))
+      : 999;
+
+    return res.json({
+      vencido: diasSemBackup > 7,
+      ultimo_backup: ultimoBackup || null,
+      dias_sem_backup: diasSemBackup,
+      backup_automatico: ctx.userConfig.backup_automatico || false,
+    });
+  }
+
+  if (action === 'cron') {
+    return res.json({
+      status: 'ok',
+      message: 'SISAFAM Cron Job executado com sucesso.',
+      timestamp: new Date().toISOString(),
+    });
+  }
+
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Método não permitido.' });
   }
@@ -17,7 +41,6 @@ async function handler(req: VercelRequest, res: VercelResponse, ctx: AuthContext
     const driveClient = await obterClienteDriveAutenticado(ctx.userConfig.drive_refresh_token);
     const pastaRaizId = await garantirPastaRaizDrive(driveClient, ctx.userConfig.drive_pasta_raiz_id);
 
-    // Coletar todos os dados do usuário do Firestore
     const userDocRef = adminDb.collection('usuarios').doc(ctx.uid);
     const collections = ['membros', 'caixa_entrada', 'perfil'];
     const backupData: Record<string, unknown> = {};
@@ -33,7 +56,7 @@ async function handler(req: VercelRequest, res: VercelResponse, ctx: AuthContext
     backupData._meta = {
       exportado_em: new Date().toISOString(),
       uid: ctx.uid,
-      versao: '0.4.0',
+      versao: '0.4.4',
     };
 
     const jsonStr = JSON.stringify(backupData, null, 2);
@@ -42,7 +65,6 @@ async function handler(req: VercelRequest, res: VercelResponse, ctx: AuthContext
 
     const nomeArquivo = `backup_${new Date().toISOString().slice(0, 10)}.json`;
 
-    // Buscar ou criar pasta de backups
     let backupPastaId = '';
     const searchRes = await driveClient.files.list({
       q: `name = '_backups' and '${pastaRaizId}' in parents and mimeType = 'application/vnd.google-apps.folder' and trashed = false`,
@@ -75,7 +97,6 @@ async function handler(req: VercelRequest, res: VercelResponse, ctx: AuthContext
       },
     });
 
-    // Atualizar timestamp de backup
     await adminDb
       .collection('usuarios')
       .doc(ctx.uid)
@@ -83,10 +104,10 @@ async function handler(req: VercelRequest, res: VercelResponse, ctx: AuthContext
       .doc('config')
       .set({ ultimo_backup: new Date().toISOString() }, { merge: true });
 
-    res.json({ success: true, arquivo: nomeArquivo });
+    return res.json({ success: true, arquivo: nomeArquivo });
   } catch (err: unknown) {
     console.error('[backup] Erro:', err);
-    res.status(500).json({ error: 'Erro ao executar backup: ' + (err as Error).message });
+    return res.status(500).json({ error: 'Erro ao executar backup: ' + (err as Error).message });
   }
 }
 
