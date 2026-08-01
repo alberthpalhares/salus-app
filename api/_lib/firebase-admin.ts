@@ -1,48 +1,43 @@
-import { initializeApp, getApps, App, cert } from 'firebase-admin/app';
-import { getFirestore } from 'firebase-admin/firestore';
+import { Firestore } from '@google-cloud/firestore';
 import firebaseConfig from '../../firebase-applet-config.json' with { type: 'json' };
 
 // ─────────────────────────────────────────────────────────────
-// Firebase Admin — singleton para serverless (Vercel)
+// Firestore Admin (Google Cloud SDK oficial) — singleton para Vercel
 // Em produção (Vercel), usa a variável FIREBASE_SERVICE_ACCOUNT.
-// Em desenvolvimento local, usa ADC (Application Default Credentials).
+// Em desenvolvimento local, usa ADC ou a chave do projeto.
 // ─────────────────────────────────────────────────────────────
 
-let adminApp: App;
+let db: Firestore;
 
-if (!getApps().length) {
-  const serviceAccountJson = process.env.FIREBASE_SERVICE_ACCOUNT;
+const serviceAccountJson = process.env.FIREBASE_SERVICE_ACCOUNT;
+const databaseId = (firebaseConfig as Record<string, string>).firestoreDatabaseId || '(default)';
 
-  if (serviceAccountJson) {
-    // Produção (Vercel): usa Service Account explícita
-    try {
-      const serviceAccount = JSON.parse(serviceAccountJson);
-      // Corrigir \n literal → newline real na private_key
-      // (Vercel UI pode escapar as quebras de linha do PEM)
-      if (serviceAccount.private_key && typeof serviceAccount.private_key === 'string') {
-        serviceAccount.private_key = serviceAccount.private_key.replace(/\\n/g, '\n');
-      }
-      adminApp = initializeApp({
-        credential: cert(serviceAccount),
-        projectId: firebaseConfig.projectId,
-      });
-    } catch (err) {
-      console.error('[firebase-admin] Erro ao inicializar com Service Account:', err);
-      // Fallback: inicializa sem credenciais (limitado)
-      adminApp = initializeApp({ projectId: firebaseConfig.projectId });
+if (serviceAccountJson) {
+  try {
+    const serviceAccount = JSON.parse(serviceAccountJson);
+    if (serviceAccount.private_key && typeof serviceAccount.private_key === 'string') {
+      serviceAccount.private_key = serviceAccount.private_key.replace(/\\n/g, '\n');
     }
-  } else {
-    // Desenvolvimento local: usa ADC
-    adminApp = initializeApp({
+    db = new Firestore({
+      projectId: serviceAccount.project_id || firebaseConfig.projectId,
+      credentials: {
+        client_email: serviceAccount.client_email,
+        private_key: serviceAccount.private_key,
+      },
+      databaseId,
+    });
+  } catch (err) {
+    console.error('[firestore] Erro ao inicializar com Service Account:', err);
+    db = new Firestore({
       projectId: firebaseConfig.projectId,
+      databaseId,
     });
   }
 } else {
-  adminApp = getApps()[0];
+  db = new Firestore({
+    projectId: firebaseConfig.projectId,
+    databaseId,
+  });
 }
 
-const databaseId = (firebaseConfig as Record<string, string>).firestoreDatabaseId || '(default)';
-
-export const adminDb = getFirestore(adminApp, databaseId);
-export { adminApp };
-
+export const adminDb = db;
