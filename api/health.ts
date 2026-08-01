@@ -11,10 +11,10 @@ export default async function handler(_req: VercelRequest, res: VercelResponse) 
   checks['GOOGLE_CLIENT_ID'] = process.env.GOOGLE_CLIENT_ID ? 'ok' : 'ausente';
   checks['GOOGLE_CLIENT_SECRET'] = process.env.GOOGLE_CLIENT_SECRET ? 'ok' : 'ausente';
 
-  // 2. Firebase Admin
+  // 2. Firebase Admin (Firestore)
   try {
-    const { adminAuth } = await import('./_lib/firebase-admin.js');
-    checks['firebase_admin'] = adminAuth ? 'ok - inicializado' : 'erro - null';
+    const { adminDb } = await import('./_lib/firebase-admin.js');
+    checks['firebase_admin'] = adminDb ? 'ok - inicializado' : 'erro - null';
   } catch (e: unknown) {
     checks['firebase_admin'] = `erro: ${(e as Error).message}`;
   }

@@ -1,17 +1,18 @@
 import { describe, it, expect, vi } from 'vitest';
 
-// Mock do firebase-admin
+// Mock do verifyToken e firebase-admin
+vi.mock('../../api/_lib/verifyToken', () => ({
+  verificarTokenFirebase: vi.fn(),
+}));
 vi.mock('../../api/_lib/firebase-admin', () => ({
-  adminAuth: {
-    verifyIdToken: vi.fn(),
-  },
   adminDb: {
     collection: vi.fn(),
   },
 }));
 
 import { verificarAuth } from '../../api/_lib/requireAuth';
-import { adminAuth, adminDb } from '../../api/_lib/firebase-admin';
+import { verificarTokenFirebase } from '../../api/_lib/verifyToken';
+import { adminDb } from '../../api/_lib/firebase-admin';
 
 describe('api/_lib/requireAuth', () => {
   it('rejeita requisições sem header Authorization', async () => {
@@ -25,7 +26,7 @@ describe('api/_lib/requireAuth', () => {
   });
 
   it('valida token e retorna uid quando token é válido', async () => {
-    vi.mocked(adminAuth.verifyIdToken).mockResolvedValueOnce({
+    vi.mocked(verificarTokenFirebase).mockResolvedValueOnce({
       uid: 'user_123',
       email: 'user@example.com',
     } as any);

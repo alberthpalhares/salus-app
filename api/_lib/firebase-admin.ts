@@ -1,5 +1,4 @@
 import { initializeApp, getApps, App, cert } from 'firebase-admin/app';
-import { getAuth } from 'firebase-admin/auth';
 import { getFirestore } from 'firebase-admin/firestore';
 import firebaseConfig from '../../firebase-applet-config.json' with { type: 'json' };
 
@@ -44,7 +43,6 @@ if (!getApps().length) {
 
 const databaseId = (firebaseConfig as Record<string, string>).firestoreDatabaseId || '(default)';
 
-export const adminAuth = getAuth(adminApp);
 export const adminDb = getFirestore(adminApp, databaseId);
 export { adminApp };
 

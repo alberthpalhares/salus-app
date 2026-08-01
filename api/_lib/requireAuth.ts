@@ -1,5 +1,6 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import { adminAuth, adminDb } from './firebase-admin.js';
+import { adminDb } from './firebase-admin.js';
+import { verificarTokenFirebase } from './verifyToken.js';
 
 // ─────────────────────────────────────────────────────────────
 // Tipos
@@ -48,8 +49,8 @@ export async function verificarAuth(req: VercelRequest): Promise<AuthContext> {
     throw new Error('Não autorizado. Token em branco.');
   }
 
-  // Verificação criptográfica — sem fallback
-  const decodedToken = await adminAuth.verifyIdToken(token);
+  // Verificação criptográfica resiliente — sem dependências conflitantes CJS/ESM
+  const decodedToken = await verificarTokenFirebase(token);
   if (!decodedToken?.uid) {
     throw new Error('Token decodificado não possui uid.');
   }
