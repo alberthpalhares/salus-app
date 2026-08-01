@@ -5,6 +5,20 @@ Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.0/),
 e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
 
+## [0.4.2] - 2026-08-01
+
+### Adicionado
+- **Suíte de Governança Avançada**:
+  - `STATUS.md`: Dashboard dinâmico de saúde e cobertura por módulo.
+  - `DEBITO_TECNICO.md`: Registro e priorização de dívida técnica do sistema.
+  - `SEGURANCA_PRIVACIDADE.md`: Matriz de conformidade LGPD, Firestore Rules e soberania de arquivos no Google Drive.
+  - `AGENTS_GUIDE.md`: Diretrizes formais para desenvolvimento pareado com assistentes de IA.
+  - `ROADMAP.md` e `IDEIAS.md`: Planejamento de versões e backlog de inovação.
+  - `adr/`: Registros de Decisões de Arquitetura (`0001-isolamento-firestore-byok.md`, `0002-armazenamento-drive-usuario.md`).
+- **Design System & UI Primitives (shadcn/ui + tweakcn)**:
+  - Utilitário `cn()` (`clsx` + `tailwind-merge`) em `src/lib/utils.ts`.
+  - Componentes primitivos em `src/componentes/ui/` (`Botao`/`Button`, `Card` com subcomponentes `CardHeader`/`CardTitle`/`CardContent`/`CardFooter`, `Badge`) alinhados com o padrão shadcn/ui.
+
 ## [0.4.1] - 2026-08-01
 
 ### Adicionado
