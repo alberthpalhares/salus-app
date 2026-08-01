@@ -1,5 +1,5 @@
 import { GoogleGenAI } from '@google/genai';
-import type { UserConfigServer } from '../requireAuth';
+import type { UserConfigServer } from '../requireAuth.js';
 
 // ─────────────────────────────────────────────────────────────
 // Tipos

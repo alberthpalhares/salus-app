@@ -13,7 +13,7 @@ export default async function handler(_req: VercelRequest, res: VercelResponse) 
 
   // 2. Firebase Admin
   try {
-    const { adminAuth } = await import('./_lib/firebase-admin');
+    const { adminAuth } = await import('./_lib/firebase-admin.js');
     checks['firebase_admin'] = adminAuth ? 'ok - inicializado' : 'erro - null';
   } catch (e: unknown) {
     checks['firebase_admin'] = `erro: ${(e as Error).message}`;
@@ -21,7 +21,7 @@ export default async function handler(_req: VercelRequest, res: VercelResponse) 
 
   // 3. Drive OAuth client
   try {
-    const { getOAuth2Client } = await import('./_lib/drive/clienteDrive');
+    const { getOAuth2Client } = await import('./_lib/drive/clienteDrive.js');
     const client = getOAuth2Client('https://example.com/callback');
     checks['drive_oauth_client'] = client ? 'ok - criado' : 'erro - null';
   } catch (e: unknown) {

@@ -1,6 +1,6 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import { withAuth, AuthContext } from '../_lib/requireAuth';
-import { getOAuth2Client } from '../_lib/drive/clienteDrive';
+import { withAuth, AuthContext } from '../_lib/requireAuth.js';
+import { getOAuth2Client } from '../_lib/drive/clienteDrive.js';
 
 function getRedirectUri(req: VercelRequest): string {
   if (req.query.redirect_uri && typeof req.query.redirect_uri === 'string') {

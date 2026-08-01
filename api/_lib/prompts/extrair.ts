@@ -1,4 +1,4 @@
-import { NUCLEO_CLINICO } from './nucleo';
+import { NUCLEO_CLINICO } from './nucleo.js';
 
 export interface MembroResumidoPrompt {
   id: string;

@@ -1,8 +1,8 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import { Readable } from 'stream';
-import { withAuth, AuthContext } from '../_lib/requireAuth';
-import { obterClienteDriveAutenticado, garantirPastaRaizDrive } from '../_lib/drive/clienteDrive';
-import { adminDb } from '../_lib/firebase-admin';
+import { withAuth, AuthContext } from '../_lib/requireAuth.js';
+import { obterClienteDriveAutenticado, garantirPastaRaizDrive } from '../_lib/drive/clienteDrive.js';
+import { adminDb } from '../_lib/firebase-admin.js';
 
 // Vercel serverless max body size = 4.5MB
 

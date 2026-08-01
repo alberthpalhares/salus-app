@@ -1,5 +1,5 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import { adminAuth, adminDb } from './firebase-admin';
+import { adminAuth, adminDb } from './firebase-admin.js';
 
 // ─────────────────────────────────────────────────────────────
 // Tipos

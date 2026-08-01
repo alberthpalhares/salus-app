@@ -1,4 +1,4 @@
-import { NUCLEO_CLINICO } from './nucleo';
+import { NUCLEO_CLINICO } from './nucleo.js';
 
 /**
  * Monta o prompt do sistema para o chat do assistente Salus.

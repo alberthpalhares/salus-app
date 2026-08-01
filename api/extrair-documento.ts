@@ -1,11 +1,11 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import { withAuth, AuthContext } from './_lib/requireAuth';
-import { adminDb } from './_lib/firebase-admin';
-import { gerarPromptExtracao } from './_lib/prompts/extrair';
-import { PROPOSTA_RESPONSE_SCHEMA } from './_lib/schemas/propostaSchema';
-import { propostaSchema } from '../src/types/propostas';
-import { chamarIA } from './_lib/ia';
-import { tratarErroIA } from './_lib/errorHandler';
+import { withAuth, AuthContext } from './_lib/requireAuth.js';
+import { adminDb } from './_lib/firebase-admin.js';
+import { gerarPromptExtracao } from './_lib/prompts/extrair.js';
+import { PROPOSTA_RESPONSE_SCHEMA } from './_lib/schemas/propostaSchema.js';
+import { propostaSchema } from '../src/types/propostas.js';
+import { chamarIA } from './_lib/ia/index.js';
+import { tratarErroIA } from './_lib/errorHandler.js';
 
 async function handler(req: VercelRequest, res: VercelResponse, ctx: AuthContext) {
   if (req.method !== 'POST') {

@@ -1,8 +1,8 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import { Readable } from 'stream';
-import { withAuth, AuthContext } from '../_lib/requireAuth';
-import { adminDb } from '../_lib/firebase-admin';
-import { obterClienteDriveAutenticado, garantirPastaRaizDrive } from '../_lib/drive/clienteDrive';
+import { withAuth, AuthContext } from '../_lib/requireAuth.js';
+import { adminDb } from '../_lib/firebase-admin.js';
+import { obterClienteDriveAutenticado, garantirPastaRaizDrive } from '../_lib/drive/clienteDrive.js';
 
 async function handler(req: VercelRequest, res: VercelResponse, ctx: AuthContext) {
   if (req.method !== 'POST') {

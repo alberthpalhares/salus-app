@@ -1,6 +1,6 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import { withAuth, AuthContext } from '../_lib/requireAuth';
-import { adminDb } from '../_lib/firebase-admin';
+import { withAuth, AuthContext } from '../_lib/requireAuth.js';
+import { adminDb } from '../_lib/firebase-admin.js';
 
 async function handler(req: VercelRequest, res: VercelResponse, ctx: AuthContext) {
   if (req.method !== 'POST') {

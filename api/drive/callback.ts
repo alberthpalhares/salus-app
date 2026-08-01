@@ -1,6 +1,6 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import { adminDb } from '../_lib/firebase-admin';
-import { getOAuth2Client, obterClienteDriveAutenticado, garantirPastaRaizDrive } from '../_lib/drive/clienteDrive';
+import { adminDb } from '../_lib/firebase-admin.js';
+import { getOAuth2Client, obterClienteDriveAutenticado, garantirPastaRaizDrive } from '../_lib/drive/clienteDrive.js';
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (req.method !== 'GET') {

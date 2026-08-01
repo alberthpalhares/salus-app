@@ -1,5 +1,5 @@
 import { Type } from '@google/genai';
-import { PROPOSTA_RESPONSE_SCHEMA } from './propostaSchema';
+import { PROPOSTA_RESPONSE_SCHEMA } from './propostaSchema.js';
 
 /**
  * Schema de resposta estruturada (structured output) do Gemini para o Chat do Salus App.
