@@ -1,78 +1,120 @@
 @import "tailwindcss";
 
-@layer base {
-  :root {
-    --background: 210 40% 98%;
-    --foreground: 222.2 84% 4.9%;
+@theme {
+  /* SISAFAM Primary: Teal Profundo (#0D9488 -> oklch(0.58 0.13 175)) */
+  --color-primary: oklch(0.58 0.13 175);
+  --color-primary-foreground: oklch(0.985 0 0);
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+  /* SISAFAM Secondary / Accent: Coral Rose (#F43F5E -> oklch(0.62 0.22 15)) */
+  --color-secondary: oklch(0.62 0.22 15);
+  --color-secondary-foreground: oklch(0.985 0 0);
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+  /* Superfícies & Layout */
+  --color-background: oklch(0.985 0.003 240);
+  --color-foreground: oklch(0.145 0.015 260);
 
-    /* SISAFAM Primary: Teal 600 (#0D9488) */
-    --primary: 173 80% 32%;
-    --primary-foreground: 210 40% 98%;
+  --color-card: oklch(1 0 0);
+  --color-card-foreground: oklch(0.145 0.015 260);
 
-    /* SISAFAM Secondary / Accent: Coral Rose (#F43F5E) */
-    --secondary: 350 89% 60%;
-    --secondary-foreground: 210 40% 98%;
+  --color-popover: oklch(1 0 0);
+  --color-popover-foreground: oklch(0.145 0.015 260);
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+  --color-muted: oklch(0.96 0.005 250);
+  --color-muted-foreground: oklch(0.55 0.015 260);
 
-    --accent: 173 40% 92%;
-    --accent-foreground: 173 80% 25%;
+  --color-accent: oklch(0.93 0.03 175);
+  --color-accent-foreground: oklch(0.30 0.08 175);
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+  --color-destructive: oklch(0.58 0.22 27);
+  --color-destructive-foreground: oklch(0.985 0 0);
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 173 80% 32%;
+  --color-border: oklch(0.92 0.005 250);
+  --color-input: oklch(0.92 0.005 250);
+  --color-ring: oklch(0.58 0.13 175);
 
-    --radius: 0.75rem;
-  }
+  /* Gráficos & BI */
+  --color-chart-1: oklch(0.58 0.13 175);   /* Teal */
+  --color-chart-2: oklch(0.62 0.22 15);    /* Coral */
+  --color-chart-3: oklch(0.68 0.16 75);    /* Amber */
+  --color-chart-4: oklch(0.55 0.12 260);   /* Indigo */
+  --color-chart-5: oklch(0.60 0.10 330);   /* Pink */
 
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
+  /* Sidebar */
+  --color-sidebar: oklch(0.16 0.015 260);
+  --color-sidebar-foreground: oklch(0.92 0.005 240);
+  --color-sidebar-primary: oklch(0.58 0.13 175);
+  --color-sidebar-primary-foreground: oklch(0.985 0 0);
+  --color-sidebar-accent: oklch(0.24 0.02 260);
+  --color-sidebar-accent-foreground: oklch(0.92 0 0);
+  --color-sidebar-border: oklch(0.24 0.015 260);
+  --color-sidebar-ring: oklch(0.58 0.13 175);
 
-    --card: 222.2 84% 7%;
-    --card-foreground: 210 40% 98%;
+  /* Geometria e Tipografia */
+  --radius: 0.75rem;
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
 
-    --popover: 222.2 84% 7%;
-    --popover-foreground: 210 40% 98%;
+  /* Animações & Durations */
+  --animate-duration-fast: 150ms;
+  --animate-duration-normal: 250ms;
+  --animate-duration-slow: 400ms;
+  --animate-ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --animate-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+}
 
-    --primary: 173 70% 40%;
-    --primary-foreground: 222.2 84% 4.9%;
+/* Modos & Variáveis Globais */
+:root {
+  --background: oklch(0.985 0.003 240);
+  --foreground: oklch(0.145 0.015 260);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0.015 260);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0.015 260);
+  --primary: oklch(0.58 0.13 175);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.62 0.22 15);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.96 0.005 250);
+  --muted-foreground: oklch(0.55 0.015 260);
+  --accent: oklch(0.93 0.03 175);
+  --accent-foreground: oklch(0.30 0.08 175);
+  --destructive: oklch(0.58 0.22 27);
+  --destructive-foreground: oklch(0.985 0 0);
+  --border: oklch(0.92 0.005 250);
+  --input: oklch(0.92 0.005 250);
+  --ring: oklch(0.58 0.13 175);
+  --radius: 0.75rem;
+}
 
-    --secondary: 350 89% 60%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 173 70% 40%;
-  }
+.dark {
+  --background: oklch(0.145 0.015 260);
+  --foreground: oklch(0.985 0.002 240);
+  --card: oklch(0.19 0.015 260);
+  --card-foreground: oklch(0.985 0.002 240);
+  --popover: oklch(0.20 0.015 260);
+  --popover-foreground: oklch(0.985 0.002 240);
+  --primary: oklch(0.62 0.14 175);
+  --primary-foreground: oklch(0.145 0 0);
+  --secondary: oklch(0.65 0.22 15);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.25 0.015 260);
+  --muted-foreground: oklch(0.70 0.01 260);
+  --accent: oklch(0.25 0.02 260);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.65 0.20 22);
+  --destructive-foreground: oklch(0.985 0 0);
+  --border: oklch(0.28 0.015 260);
+  --input: oklch(0.32 0.015 260);
+  --ring: oklch(0.62 0.14 175);
 }
 
 @layer base {
   * {
-    border-color: hsl(var(--border));
+    border-color: var(--border);
   }
   body {
-    background-color: hsl(var(--background));
-    color: hsl(var(--foreground));
-    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    transition: background-color 200ms ease, color 200ms ease;
   }
 }

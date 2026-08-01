@@ -12,15 +12,17 @@ import { Membro, Medicamento, Exame, Evento, DocumentoMembro } from '../types/do
 import { Carregando } from '../componentes/ui/Carregando';
 import { Botao } from '../componentes/ui/Botao';
 import { Card } from '../componentes/ui/Card';
+import { Tabs, TabsList, TabsTrigger, TabsContent } from '../componentes/ui/Tabs';
 import { CabecalhoMembro } from './PerfilMembro/CabecalhoMembro';
 import { AbaFicha } from './PerfilMembro/AbaFicha';
 import { AbaMedicamentos } from './PerfilMembro/AbaMedicamentos';
 import { AbaExames } from './PerfilMembro/AbaExames';
+import { AbaEvolucao } from './PerfilMembro/AbaEvolucao';
 import { AbaHistorico } from './PerfilMembro/AbaHistorico';
 import { AbaDocumentos } from './PerfilMembro/AbaDocumentos';
-import { UserCheck, Pill, Activity, Clock, Folder, ArrowLeft, AlertCircle } from 'lucide-react';
+import { UserCheck, Pill, Activity, TrendingUp, Clock, Folder, ArrowLeft, AlertCircle } from 'lucide-react';
 
-export type AbaPerfil = 'ficha' | 'medicamentos' | 'exames' | 'historico' | 'documentos';
+export type AbaPerfil = 'ficha' | 'medicamentos' | 'exames' | 'evolucao' | 'historico' | 'documentos';
 
 export const PerfilMembroTela: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -92,7 +94,6 @@ export const PerfilMembroTela: React.FC = () => {
       membro_id: id,
     };
     await repositoriomedicamentos.salvar(user.uid, medComMembro);
-    // Recarregar lista de medicamentos
     const atualizados = await repositoriomedicamentos.listarPorMembro(user.uid, id);
     setMedicamentos(atualizados || []);
   };
@@ -163,107 +164,62 @@ export const PerfilMembroTela: React.FC = () => {
       {/* 1. Cabeçalho do Membro */}
       <CabecalhoMembro membro={membro} onVoltar={() => navigate('/')} />
 
-      {/* 2. Barra de Abas de Navegação */}
-      <div className="border-b border-slate-200">
-        <nav className="flex space-x-2 sm:space-x-4 overflow-x-auto no-scrollbar pb-1">
-          <button
-            type="button"
-            onClick={() => setAbaAtiva('ficha')}
-            className={`flex items-center gap-2 py-3 px-4 font-semibold text-sm rounded-t-xl transition-colors whitespace-nowrap border-b-2 cursor-pointer ${
-              abaAtiva === 'ficha'
-                ? 'border-teal-600 text-teal-700 bg-teal-50/50'
-                : 'border-transparent text-slate-600 hover:text-slate-900 hover:bg-slate-50'
-            }`}
-          >
-            <UserCheck className="w-4 h-4" />
+      {/* 2. Barra de Abas de Navegação Animadas */}
+      <Tabs defaultValue="ficha" value={abaAtiva} onValueChange={(v) => setAbaAtiva(v as AbaPerfil)}>
+        <TabsList>
+          <TabsTrigger value="ficha" icone={<UserCheck className="w-4 h-4" />}>
             Ficha
-          </button>
-
-          <button
-            type="button"
-            onClick={() => setAbaAtiva('medicamentos')}
-            className={`flex items-center gap-2 py-3 px-4 font-semibold text-sm rounded-t-xl transition-colors whitespace-nowrap border-b-2 cursor-pointer ${
-              abaAtiva === 'medicamentos'
-                ? 'border-teal-600 text-teal-700 bg-teal-50/50'
-                : 'border-transparent text-slate-600 hover:text-slate-900 hover:bg-slate-50'
-            }`}
-          >
-            <Pill className="w-4 h-4" />
+          </TabsTrigger>
+          <TabsTrigger value="medicamentos" icone={<Pill className="w-4 h-4" />}>
             Medicamentos
-            {medicamentos.filter((m) => m.status === 'prescrito').length > 0 && (
-              <span className="w-2 h-2 rounded-full bg-amber-500 shrink-0" />
-            )}
-          </button>
-
-          <button
-            type="button"
-            onClick={() => setAbaAtiva('exames')}
-            className={`flex items-center gap-2 py-3 px-4 font-semibold text-sm rounded-t-xl transition-colors whitespace-nowrap border-b-2 cursor-pointer ${
-              abaAtiva === 'exames'
-                ? 'border-teal-600 text-teal-700 bg-teal-50/50'
-                : 'border-transparent text-slate-600 hover:text-slate-900 hover:bg-slate-50'
-            }`}
-          >
-            <Activity className="w-4 h-4" />
+          </TabsTrigger>
+          <TabsTrigger value="exames" icone={<Activity className="w-4 h-4" />}>
             Exames
-          </button>
-
-          <button
-            type="button"
-            onClick={() => setAbaAtiva('historico')}
-            className={`flex items-center gap-2 py-3 px-4 font-semibold text-sm rounded-t-xl transition-colors whitespace-nowrap border-b-2 cursor-pointer ${
-              abaAtiva === 'historico'
-                ? 'border-teal-600 text-teal-700 bg-teal-50/50'
-                : 'border-transparent text-slate-600 hover:text-slate-900 hover:bg-slate-50'
-            }`}
-          >
-            <Clock className="w-4 h-4" />
+          </TabsTrigger>
+          <TabsTrigger value="evolucao" icone={<TrendingUp className="w-4 h-4" />}>
+            Evolução
+          </TabsTrigger>
+          <TabsTrigger value="historico" icone={<Clock className="w-4 h-4" />}>
             Histórico
-          </button>
-
-          <button
-            type="button"
-            onClick={() => setAbaAtiva('documentos')}
-            className={`flex items-center gap-2 py-3 px-4 font-semibold text-sm rounded-t-xl transition-colors whitespace-nowrap border-b-2 cursor-pointer ${
-              abaAtiva === 'documentos'
-                ? 'border-teal-600 text-teal-700 bg-teal-50/50'
-                : 'border-transparent text-slate-600 hover:text-slate-900 hover:bg-slate-50'
-            }`}
-          >
-            <Folder className="w-4 h-4" />
+          </TabsTrigger>
+          <TabsTrigger value="documentos" icone={<Folder className="w-4 h-4" />}>
             Documentos
-          </button>
-        </nav>
-      </div>
+          </TabsTrigger>
+        </TabsList>
 
-      {/* 3. Conteúdo da Aba Selecionada */}
-      <div className="pt-2">
-        {abaAtiva === 'ficha' && (
-          <AbaFicha membro={membro} onSalvarMembro={handleSalvarMembro} />
-        )}
+        {/* 3. Conteúdo das Abas */}
+        <div className="pt-2">
+          <TabsContent value="ficha">
+            <AbaFicha membro={membro} onSalvarMembro={handleSalvarMembro} />
+          </TabsContent>
 
-        {abaAtiva === 'medicamentos' && (
-          <AbaMedicamentos
-            medicamentos={medicamentos}
-            onSalvarMedicamento={handleSalvarMedicamento}
-          />
-        )}
+          <TabsContent value="medicamentos">
+            <AbaMedicamentos
+              medicamentos={medicamentos}
+              onSalvarMedicamento={handleSalvarMedicamento}
+            />
+          </TabsContent>
 
-        {abaAtiva === 'exames' && (
-          <AbaExames exames={exames} onSalvarExame={handleSalvarExame} />
-        )}
+          <TabsContent value="exames">
+            <AbaExames exames={exames} onSalvarExame={handleSalvarExame} />
+          </TabsContent>
 
-        {abaAtiva === 'historico' && (
-          <AbaHistorico eventos={eventos} onSalvarEvento={handleSalvarEvento} />
-        )}
+          <TabsContent value="evolucao">
+            <AbaEvolucao membroId={membro.id} membroNome={membro.nome} />
+          </TabsContent>
 
-        {abaAtiva === 'documentos' && (
-          <AbaDocumentos
-            documentos={documentos}
-            onSalvarDocumento={handleSalvarDocumento}
-          />
-        )}
-      </div>
+          <TabsContent value="historico">
+            <AbaHistorico eventos={eventos} onSalvarEvento={handleSalvarEvento} />
+          </TabsContent>
+
+          <TabsContent value="documentos">
+            <AbaDocumentos
+              documentos={documentos}
+              onSalvarDocumento={handleSalvarDocumento}
+            />
+          </TabsContent>
+        </div>
+      </Tabs>
     </div>
   );
 };

@@ -5,6 +5,25 @@ Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.0/),
 e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
 
+## [1.0.0] - 2026-08-01
+
+### Adicionado
+- **Módulo de Evolução de Marcadores & Cruzamento Genético**:
+  - Gráficos de tendência temporal de exames quantitativos via Recharts em `AbaEvolucao.tsx`.
+  - Tela de Cruzamento Genético Familiar em `CruzamentoGeneticoTela.tsx` com filtro estrito por vínculo biológico e isolamento por espécie.
+- **Módulo Gerador de Resumo para Consulta (`preparar-consulta`)**:
+  - Compilação sintética de 1 página em PDF via jsPDF em `gerarPdfConsulta.ts`.
+  - Tela interativa `PrepararConsultaTela.tsx` com pré-visualização em tempo real e formulário por especialidade.
+- **Reformulação Visual & Design System (shadcn/ui + tweakcn + Motion)**:
+  - Tokens CSS em OKLCH em `src/index.css` com paleta Teal Profundo (`#0D9488`) e Coral Rose (`#F43F5E`).
+  - Novos componentes primitivos em `src/componentes/ui/`: `Dialog`, `Tabs`, `Select`, `Tooltip`, `Drawer`, `Switch`.
+  - Sistema de animações ativas com Motion (`AnimacaoEntrada`, `AnimacaoLista`, `AnimacaoPagina`, `AnimacaoContador`).
+  - Suporte completo a Tema Escuro (Dark Mode) com toggle no AppShell.
+- **Dívida Técnica Quitada & Code Splitting**:
+  - Refatoração dos monólitos `OnboardingTela.tsx`, `PainelTela.tsx`, `AbaDocumentos.tsx`, `api/chat.ts` e `importar.ts` com complexidade cognitiva <20 por função.
+  - Otimização do build de produção com `manualChunks` no Rollup (build em ~1.39s).
+  - 38/38 testes unitários passando (100%).
+
 ## [0.4.4] - 2026-08-01
 
 ### Adicionado

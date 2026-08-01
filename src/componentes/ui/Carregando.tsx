@@ -1,31 +1,36 @@
 import React from 'react';
-import { HeartPulse } from 'lucide-react';
+import { Loader2 } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 export interface CarregandoProps {
   mensagem?: string;
   fullScreen?: boolean;
+  className?: string;
 }
 
 export const Carregando: React.FC<CarregandoProps> = ({
   mensagem = 'Carregando...',
   fullScreen = false,
+  className,
 }) => {
-  const conteudo = (
-    <div className="flex flex-col items-center justify-center p-6 text-center">
-      <div className="p-4 bg-teal-500/10 border border-teal-500/20 rounded-2xl text-teal-600 animate-pulse mb-3">
-        <HeartPulse className="w-8 h-8 animate-bounce" />
-      </div>
-      <p className="text-sm font-semibold text-slate-700">{mensagem}</p>
+  const container = (
+    <div className={cn('flex flex-col items-center justify-center p-8 space-y-3 text-center', className)}>
+      <Loader2 className="w-8 h-8 text-teal-600 dark:text-teal-400 animate-spin shrink-0" />
+      {mensagem && (
+        <p className="text-xs font-bold text-slate-600 dark:text-slate-400 tracking-wide animate-pulse">
+          {mensagem}
+        </p>
+      )}
     </div>
   );
 
   if (fullScreen) {
     return (
-      <div className="min-h-screen bg-slate-50 flex items-center justify-center p-4">
-        {conteudo}
+      <div className="fixed inset-0 z-50 bg-slate-900/80 backdrop-blur-md flex items-center justify-center">
+        {container}
       </div>
     );
   }
 
-  return conteudo;
+  return container;
 };

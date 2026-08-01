@@ -3,7 +3,7 @@ import { Loader2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 export interface BotaoProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variante?: 'primario' | 'secundario' | 'outline' | 'perigo' | 'ghost' | 'default' | 'destructive';
+  variante?: 'primario' | 'secundario' | 'outline' | 'perigo' | 'ghost' | 'default' | 'destructive' | 'link';
   tamanho?: 'sm' | 'md' | 'lg' | 'default';
   carregando?: boolean;
   icone?: React.ReactNode;
@@ -20,17 +20,18 @@ export const Botao: React.FC<BotaoProps> = ({
   ...props
 }) => {
   const estilosBase =
-    'inline-flex items-center justify-center font-medium rounded-xl transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer shadow-2xs select-none active:scale-[0.98]';
+    'inline-flex items-center justify-center font-bold rounded-xl transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer select-none active:scale-[0.97]';
 
   const variantesMap: Record<string, string> = {
-    primario: 'bg-teal-600 hover:bg-teal-700 text-white focus-visible:ring-teal-500 shadow-xs',
-    default: 'bg-teal-600 hover:bg-teal-700 text-white focus-visible:ring-teal-500 shadow-xs',
-    secundario: 'bg-slate-100 hover:bg-slate-200 text-slate-800 border border-slate-200/80',
-    secondary: 'bg-slate-100 hover:bg-slate-200 text-slate-800 border border-slate-200/80',
-    outline: 'border border-slate-300 bg-white hover:bg-slate-50 text-slate-700 hover:text-slate-900',
-    perigo: 'bg-rose-600 hover:bg-rose-700 text-white shadow-xs',
-    destructive: 'bg-rose-600 hover:bg-rose-700 text-white shadow-xs',
-    ghost: 'hover:bg-slate-100 text-slate-700 shadow-none border-0',
+    primario: 'bg-primary hover:bg-teal-700 text-primary-foreground shadow-xs',
+    default: 'bg-primary hover:bg-teal-700 text-primary-foreground shadow-xs',
+    secundario: 'bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700',
+    secondary: 'bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700',
+    outline: 'border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-slate-100',
+    perigo: 'bg-destructive hover:bg-rose-700 text-destructive-foreground shadow-xs',
+    destructive: 'bg-destructive hover:bg-rose-700 text-destructive-foreground shadow-xs',
+    ghost: 'hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 shadow-none border-0',
+    link: 'text-teal-600 dark:text-teal-400 hover:underline p-0 h-auto bg-transparent border-0 shadow-none',
   };
 
   const tamanhosMap: Record<string, string> = {

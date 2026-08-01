@@ -1,67 +1,78 @@
 import React, { useEffect } from 'react';
-import { CheckCircle2, AlertCircle, Info, AlertTriangle, X } from 'lucide-react';
+import { motion, AnimatePresence } from 'motion/react';
+import { CheckCircle2, AlertTriangle, XCircle, Info, X } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 export interface ToastProps {
-  tipo?: 'sucesso' | 'erro' | 'aviso' | 'info';
-  titulo?: string;
   mensagem: string;
+  tipo?: 'sucesso' | 'erro' | 'alerta' | 'info';
+  visivel: boolean;
   onFechar: () => void;
   duracaoMs?: number;
 }
 
 export const Toast: React.FC<ToastProps> = ({
-  tipo = 'sucesso',
-  titulo,
   mensagem,
+  tipo = 'sucesso',
+  visivel,
   onFechar,
   duracaoMs = 4000,
 }) => {
   useEffect(() => {
-    if (duracaoMs > 0) {
+    if (visivel && duracaoMs > 0) {
       const timer = setTimeout(() => {
         onFechar();
       }, duracaoMs);
       return () => clearTimeout(timer);
     }
-  }, [duracaoMs, onFechar]);
+  }, [visivel, duracaoMs, onFechar]);
 
-  const estilos = {
+  const config = {
     sucesso: {
-      bg: 'bg-emerald-50 border-emerald-200 text-emerald-900',
-      icone: <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0" />,
+      icone: <CheckCircle2 className="w-5 h-5 text-teal-600 dark:text-teal-400 shrink-0" />,
+      estilos: 'border-teal-200 dark:border-teal-800 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100',
     },
     erro: {
-      bg: 'bg-rose-50 border-rose-200 text-rose-900',
-      icone: <AlertCircle className="w-5 h-5 text-rose-600 shrink-0" />,
+      icone: <XCircle className="w-5 h-5 text-rose-600 dark:text-rose-400 shrink-0" />,
+      estilos: 'border-rose-200 dark:border-rose-800 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100',
     },
-    aviso: {
-      bg: 'bg-amber-50 border-amber-200 text-amber-900',
-      icone: <AlertTriangle className="w-5 h-5 text-amber-600 shrink-0" />,
+    alerta: {
+      icone: <AlertTriangle className="w-5 h-5 text-amber-600 dark:text-amber-400 shrink-0" />,
+      estilos: 'border-amber-200 dark:border-amber-800 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100',
     },
     info: {
-      bg: 'bg-teal-50 border-teal-200 text-teal-900',
-      icone: <Info className="w-5 h-5 text-teal-600 shrink-0" />,
+      icone: <Info className="w-5 h-5 text-indigo-600 dark:text-indigo-400 shrink-0" />,
+      estilos: 'border-indigo-200 dark:border-indigo-800 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100',
     },
-  }[tipo];
+  };
+
+  const item = config[tipo];
 
   return (
-    <div
-      role="status"
-      aria-live="polite"
-      className={`fixed bottom-20 md:bottom-6 right-4 left-4 sm:left-auto sm:max-w-md z-50 p-4 rounded-xl border shadow-lg transition-all duration-200 flex items-start gap-3 ${estilos.bg}`}
-    >
-      {estilos.icone}
-      <div className="flex-1 min-w-0">
-        {titulo && <h4 className="text-sm font-bold leading-tight mb-0.5">{titulo}</h4>}
-        <p className="text-xs leading-relaxed">{mensagem}</p>
-      </div>
-      <button
-        onClick={onFechar}
-        className="p-1 rounded-lg hover:bg-black/5 transition-colors text-slate-500 hover:text-slate-800 shrink-0 cursor-pointer"
-        aria-label="Fechar notificação"
-      >
-        <X className="w-4 h-4" />
-      </button>
-    </div>
+    <AnimatePresence>
+      {visivel && (
+        <div className="fixed bottom-6 right-6 z-50 pointer-events-none">
+          <motion.div
+            initial={{ opacity: 0, y: 20, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 20, scale: 0.95 }}
+            transition={{ duration: 0.2, ease: [0.34, 1.56, 0.64, 1] }}
+            className={cn(
+              'pointer-events-auto flex items-center gap-3 p-4 rounded-2xl border shadow-xl max-w-md min-w-[280px]',
+              item.estilos
+            )}
+          >
+            {item.icone}
+            <span className="text-xs font-bold leading-snug flex-1">{mensagem}</span>
+            <button
+              onClick={onFechar}
+              className="p-1 rounded-lg text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors cursor-pointer"
+            >
+              <X className="w-4 h-4" />
+            </button>
+          </motion.div>
+        </div>
+      )}
+    </AnimatePresence>
   );
 };

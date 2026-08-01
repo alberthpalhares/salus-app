@@ -13,7 +13,6 @@ export default defineConfig({
   server: {
     host: '0.0.0.0',
     port: 3000,
-    // Em dev com Vercel CLI (`vercel dev`), chamadas /api/* vão para o servidor de funções
     proxy: {
       '/api': {
         target: 'http://localhost:3001',
@@ -23,9 +22,20 @@ export default defineConfig({
     },
   },
   build: {
-    // Excluir diretório api/ do bundle do client
     rollupOptions: {
       external: [/^api\//],
+      output: {
+        manualChunks(id) {
+          if (id.includes('node_modules')) {
+            if (id.includes('firebase')) return 'vendor-firebase';
+            if (id.includes('recharts')) return 'vendor-recharts';
+            if (id.includes('jspdf')) return 'vendor-jspdf';
+            if (id.includes('motion')) return 'vendor-motion';
+            if (id.includes('lucide-react')) return 'vendor-icons';
+            if (id.includes('react')) return 'vendor-core';
+          }
+        },
+      },
     },
   },
 });

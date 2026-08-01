@@ -13,6 +13,8 @@ import { PrivacidadeTela } from './telas/PrivacidadeTela';
 import { SobreTela } from './telas/SobreTela';
 import { ProfissionaisTela } from './telas/ProfissionaisTela';
 import { FichaPublicaTela } from './telas/FichaPublicaTela';
+import { CruzamentoGeneticoTela } from './telas/CruzamentoGeneticoTela';
+import { PrepararConsultaTela } from './telas/PrepararConsultaTela';
 import { Carregando } from './componentes/ui/Carregando';
 
 function GuardaOnboarding({ children }: { children: React.ReactNode }) {
@@ -54,6 +56,8 @@ function RoteamentoAutenticado() {
           <Route path="/membro/:id" element={<PerfilMembroTela />} />
           <Route path="/profissionais" element={<ProfissionaisTela />} />
           <Route path="/ficha-publica/:id" element={<FichaPublicaTela />} />
+          <Route path="/evolucao" element={<CruzamentoGeneticoTela />} />
+          <Route path="/preparar-consulta" element={<PrepararConsultaTela />} />
           <Route path="/chat" element={<ChatTela />} />
           <Route path="/ajustes" element={<AjustesTela />} />
           <Route path="/onboarding" element={<OnboardingTela />} />
