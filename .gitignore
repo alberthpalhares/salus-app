@@ -43,6 +43,9 @@ venv/
 # Test coverage
 coverage/
 
+# Local backup zips
+*.zip
+
 # Dados pessoais do framework (não do app)
 _Caixa de Entrada/*
 !_Caixa de Entrada/.gitkeep

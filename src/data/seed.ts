@@ -6,7 +6,7 @@ import {
   repositoriocheckups,
   repositorioexames,
   repositorioeventos,
-  repositeriodocumentos,
+  repositoriodocumentos,
   repositorioperfilConfig,
 } from './repositorios';
 import { Membro, Medicamento, Vacina, Checkup, Exame, Evento, DocumentoMembro } from '../types/dominio';
@@ -285,9 +285,9 @@ export async function semearDadosDeExemplo(uid: string): Promise<void> {
     tamanho_bytes: 210000,
   };
 
-  await repositeriodocumentos.salvar(uid, docAna1);
-  await repositeriodocumentos.salvar(uid, docAna2);
-  await repositeriodocumentos.salvar(uid, docPedro1);
+  await repositoriodocumentos.salvar(uid, docAna1);
+  await repositoriodocumentos.salvar(uid, docAna2);
+  await repositoriodocumentos.salvar(uid, docPedro1);
 
   // 9. Perfil e Configurações
   await repositorioperfilConfig.salvar(uid, {

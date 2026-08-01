@@ -5,6 +5,17 @@ Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.0/),
 e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
 
+## [0.4.1] - 2026-08-01
+
+### Adicionado
+- **Governança DDD & SDD (Project Standards Tier T4)**: `GLOSSARIO.md` com a Linguagem Ubíqua do app, `src/lib/constants.ts` centralizando valores e presets de IA, e a pasta `specs/` contendo especificações técnicas de comportamento SDD/BDD.
+- **Handlers Serverless API**: `api/drive/deletar.ts` para remoção no Google Drive e `api/backup/cron.ts` para execuções agendadas no Vercel.
+- **Resolução de Aliases (`@/*`)**: Suporte a `@/*` mapeado para `src/*` em `tsconfig.json` e `vite.config.ts`.
+
+### Alterado
+- **Decomposição de Monólitos de Tela**: Telas principais desacopladas com custom hooks dedicados (`useCaixaEntrada`, `useSecaoBYOK`, `useChatSession`, `useEdicaoFicha`, `yamlParser`), reduzindo a complexidade cognitiva dos componentes UI para <150L.
+- **Tipagem Estrita**: Corrigidos erros de compilação TypeScript em `importar.ts` e limpos tipos legados em `src/types/index.ts`.
+
 ## [0.3.0] - 2026-07-23
 
 ### Adicionado

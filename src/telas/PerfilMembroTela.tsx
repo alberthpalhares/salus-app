@@ -6,7 +6,7 @@ import {
   repositoriomedicamentos,
   repositorioexames,
   repositorioeventos,
-  repositeriodocumentos,
+  repositoriodocumentos,
 } from '../data/repositorios';
 import { Membro, Medicamento, Exame, Evento, DocumentoMembro } from '../types/dominio';
 import { Carregando } from '../componentes/ui/Carregando';
@@ -59,7 +59,7 @@ export const PerfilMembroTela: React.FC = () => {
         repositoriomedicamentos.listarPorMembro(user.uid, id),
         repositorioexames.listarPorMembro(user.uid, id),
         repositorioeventos.listarPorMembro(user.uid, id),
-        repositeriodocumentos.listarPorMembro(user.uid, id),
+        repositoriodocumentos.listarPorMembro(user.uid, id),
       ]);
 
       setMedicamentos(medsList || []);
@@ -125,8 +125,8 @@ export const PerfilMembroTela: React.FC = () => {
       ...doc,
       membro_id: id,
     };
-    await repositeriodocumentos.salvar(user.uid, docComMembro);
-    const atualizados = await repositeriodocumentos.listarPorMembro(user.uid, id);
+    await repositoriodocumentos.salvar(user.uid, docComMembro);
+    const atualizados = await repositoriodocumentos.listarPorMembro(user.uid, id);
     setDocumentos(atualizados || []);
   };
 

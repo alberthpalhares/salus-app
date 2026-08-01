@@ -175,7 +175,7 @@ export async function fazerUploadParaDrive(
 export async function removerArquivoDrive(fileId: string): Promise<void> {
   const headers = await getAuthHeaders();
 
-  const res = await fetch(`/api/drive/files/${encodeURIComponent(fileId)}`, {
+  const res = await fetch(`/api/drive/deletar?fileId=${encodeURIComponent(fileId)}`, {
     method: 'DELETE',
     headers,
   });
