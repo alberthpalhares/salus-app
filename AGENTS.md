@@ -1,9 +1,8 @@
-# Salus — Inicialização
+# SISAFAM — Sistema de Saúde da Família
 
-Este diretório contém o framework **Salus**, mas ele ainda não foi inicializado para esta família.
+Este diretório contém a base do **SISAFAM** (Sistema de Saúde da Família — pessoas e animais).
 
-**INSTRUÇÃO PARA A IA:**
-Se o usuário pedir para iniciar, montar ou configurar o Salus, você deve **obrigatoriamente** ler e executar as instruções localizadas em:
-`.agents/skills/salus-onboarding/SKILL.md`
-
-Não faça perguntas soltas. Leia a skill acima e inicie a entrevista guiada exatamente como instruído lá. Ao final da entrevista, este arquivo de inicialização será sobrescrito com o novo "cérebro" permanente do Salus.
+**INSTRUÇÕES DE BRANDING E INTERFACE:**
+- O sistema utiliza **shadcn/ui** integrado ao **tweakcn** para os tokens de UI/UX em Tailwind CSS v4.
+- As paletas de cores primárias são Teal Profundo (`#0D9488`) e Coral Rose (`#F43F5E`).
+- Componentes reutilizáveis de UI encontram-se em `src/components/ui/`.

@@ -1,9 +1,9 @@
 {
-  "name": "app-name-web",
+  "name": "sisafam-app",
   "version": "0.4.3",
   "private": true,
   "type": "module",
-  "description": "Central de Inteligência de Saúde da Família — pessoas e animais.",
+  "description": "SISAFAM — Sistema de Saúde da Família (pessoas e animais).",
   "author": "Alberth Klinsmann <alberthpalhares@gmail.com>",
   "license": "MIT",
   "repository": {
